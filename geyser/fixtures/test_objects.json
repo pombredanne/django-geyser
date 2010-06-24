@@ -1,0 +1,39 @@
+[
+    {
+        "model": "testapp.testmodel1",
+        "pk": 1,
+        "fields": {
+            "name": "test object 1a",
+            "owner": 2
+        }
+    },
+    {
+        "model": "testapp.testmodel1",
+        "pk": 2,
+        "fields": {
+            "name": "test object 1b",
+            "owner": 2
+        }
+    },
+    {
+        "model": "testapp.testmodel2",
+        "pk": 1,
+        "fields": {
+            "name": "test object 2a"
+        }
+    },
+    {
+        "model": "testapp.testmodel3",
+        "pk": 1,
+        "fields": {
+            "name": "test object 3a"
+        }
+    },
+    {
+        "model": "testapp.testmodel3",
+        "pk": 2,
+        "fields": {
+            "name": "test object 3b"
+        }
+    }
+]

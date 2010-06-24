@@ -1,0 +1,52 @@
+[
+    {
+        "model": "geyser.droplet",
+        "pk": 1,
+        "fields": {
+            "publishable_type": ["testapp", "testmodel1"],
+            "publishable_id": 1,
+            "publication_type": ["testapp", "testmodel2"],
+            "publication_id": 1
+        }
+    },
+    {
+        "model": "geyser.droplet",
+        "pk": 2,
+        "fields": {
+            "publishable_type": ["testapp", "testmodel1"],
+            "publishable_id": 2,
+            "publication_type": ["testapp", "testmodel2"],
+            "publication_id": 1
+        }
+    },
+    {
+        "model": "geyser.droplet",
+        "pk": 3,
+        "fields": {
+            "publishable_type": ["testapp", "testmodel1"],
+            "publishable_id": 1,
+            "publication_type": ["testapp", "testmodel3"],
+            "publication_id": 1
+        }
+    },
+    {
+        "model": "geyser.droplet",
+        "pk": 4,
+        "fields": {
+            "publishable_type": ["testapp", "testmodel2"],
+            "publishable_id": 1,
+            "publication_type": ["testapp", "testmodel3"],
+            "publication_id": 1
+        }
+    },
+    {
+        "model": "geyser.droplet",
+        "pk": 5,
+        "fields": {
+            "publishable_type": ["testapp", "testmodel2"],
+            "publishable_id": 1,
+            "publication_type": ["testapp", "testmodel3"],
+            "publication_id": 2
+        }
+    }
+]
