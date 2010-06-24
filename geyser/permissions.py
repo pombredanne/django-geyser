@@ -5,6 +5,9 @@ from django.contrib.contenttypes.models import ContentType
 import authority
 from authority.permissions import BasePermission
 
+
+# For some reason authority adds generic checks to the base class whenever
+# they are registered on a subclass. Saving the default list to restore it...
 base_checks = BasePermission.generic_checks[:]
 
 
@@ -26,6 +29,7 @@ def register_permission(app_model):
         publishable_name =  publishable.split('.')[-1]
         check_list.append('publish_%s_to' % publishable_name)
     authority.register(Model, label='%s_permission' % model_name, generic_checks=check_list)
+    # Reset the base class' generic checks. See comment on lines 9-10.
     BasePermission.generic_checks = base_checks
 
 
