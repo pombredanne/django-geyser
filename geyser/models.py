@@ -28,7 +28,7 @@ class Droplet(models.Model):
     publication = generic.GenericForeignKey(
         'publication_type', 'publication_id')
     
-    is_newest = models.BooleanField(default=True)
+    is_newest = models.BooleanField(default=True, editable=False)
     published = models.DateTimeField(auto_now_add=True, editable=False)
     updated = models.DateTimeField(auto_now=True, editable=False)
     
