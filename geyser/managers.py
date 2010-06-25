@@ -10,7 +10,7 @@ class DropletManager(models.Manager):
     """
     
     def get_list(self, **kwargs):
-        """Get a list of Droplet instance, filtered in useful ways."""
+        """Get a list of Droplet instances, filtered in useful ways."""
         queries = []
         filters = {}
         
