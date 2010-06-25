@@ -8,7 +8,7 @@ from geyser.tests.testapp.models import TestModel1, TestModel2
 from geyser.models import Droplet
 
 
-class DropletTest(GeyserTestCase):
+class ModelTest(GeyserTestCase):
     fixtures = ['test_objects.json']
     
     def setUp(self):
@@ -43,4 +43,4 @@ class DropletTest(GeyserTestCase):
         self.assertNotEqual(droplet1_updated, droplet1.updated)
 
 
-__all__ = ('DropletTest',)
+__all__ = ('ModelTest',)
