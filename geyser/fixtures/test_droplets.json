@@ -6,7 +6,9 @@
             "publishable_type": ["testapp", "testmodel1"],
             "publishable_id": 1,
             "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1
+            "publication_id": 1,
+            "is_newest": true,
+            "published": "2009-09-28 15:44:33.705410"
         }
     },
     {
@@ -16,7 +18,9 @@
             "publishable_type": ["testapp", "testmodel1"],
             "publishable_id": 2,
             "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1
+            "publication_id": 1,
+            "is_newest": true,
+            "published": "2010-05-28 15:44:33.705410"
         }
     },
     {
@@ -26,7 +30,9 @@
             "publishable_type": ["testapp", "testmodel1"],
             "publishable_id": 1,
             "publication_type": ["testapp", "testmodel3"],
-            "publication_id": 1
+            "publication_id": 1,
+            "is_newest": true,
+            "published": "2010-06-05 15:44:33.705410"
         }
     },
     {
@@ -36,7 +42,9 @@
             "publishable_type": ["testapp", "testmodel2"],
             "publishable_id": 1,
             "publication_type": ["testapp", "testmodel3"],
-            "publication_id": 1
+            "publication_id": 1,
+            "is_newest": true,
+            "published": "2010-06-27 15:44:33.705410"
         }
     },
     {
@@ -46,7 +54,33 @@
             "publishable_type": ["testapp", "testmodel2"],
             "publishable_id": 1,
             "publication_type": ["testapp", "testmodel3"],
-            "publication_id": 2
+            "publication_id": 2,
+            "is_newest": false,
+            "published": "2010-06-28 15:44:33.705410"
+        }
+    },
+    {
+        "model": "geyser.droplet",
+        "pk": 6,
+        "fields": {
+            "publishable_type": ["testapp", "testmodel2"],
+            "publishable_id": 1,
+            "publication_type": ["testapp", "testmodel3"],
+            "publication_id": 2,
+            "is_newest": true,
+            "published": "2010-06-28 15:45:33.705410"
+        }
+    },
+    {
+        "model": "geyser.droplet",
+        "pk": 7,
+        "fields": {
+            "publishable_type": ["testapp", "testmodel2"],
+            "publishable_id": 1,
+            "publication_type": ["testapp", "testmodel3"],
+            "publication_id": 2,
+            "is_newest": true,
+            "published": "2112-06-28 15:45:33.705410"
         }
     }
 ]

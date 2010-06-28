@@ -1,10 +1,10 @@
 from datetime import datetime
 
+from django.db.models import Q
 from django.conf import settings
 
 from geyser.tests.base import GeyserTestCase
 from geyser.tests.testapp.models import TestModel1, TestModel2, TestModel3
-
 from geyser.models import Droplet
 
 
@@ -20,10 +20,7 @@ class ManagerTest(GeyserTestCase):
             },
             'testapp.testmodel2': {
                 'publish_to': ('testapp.testmodel3',),
-                'list_annotations': {
-                    'published': 'pub_date',
-                    'publication': 'pub_on'
-                }
+                'published_annotation': 'pub_date',
             }
         }
         self.t1a = TestModel1.objects.get(pk=1)
@@ -35,12 +32,17 @@ class ManagerTest(GeyserTestCase):
         self.t1b_t2a = Droplet.objects.get(pk=2)
         self.t1a_t3a = Droplet.objects.get(pk=3)
         self.t2a_t3a = Droplet.objects.get(pk=4)
-        self.t2a_t3b = Droplet.objects.get(pk=5)
+        self.t2a_t3b_old = Droplet.objects.get(pk=5)
+        self.t2a_t3b = Droplet.objects.get(pk=6)
+        self.t2a_t3b_future = Droplet.objects.get(pk=7)
     
     def test_get_list(self):
         # unfiltered
         all_pubs = Droplet.objects.get_list()
-        self.assertEqual(all_pubs.count(), 5)
+        self.assertEqual(len(all_pubs), 5)
+        #test ordering
+        all_list = [self.t2a_t3b, self.t2a_t3a, self.t1a_t3a, self.t1b_t2a, self.t1a_t2a]
+        self.assertTrue(all([all_pubs[i] == all_list[i] for i in range(5)]))
     
         # by publication
         to_3a = Droplet.objects.get_list(publications=self.t3a)
@@ -80,21 +82,28 @@ class ManagerTest(GeyserTestCase):
         t1_t2_to_3b = Droplet.objects.get_list(publishable_models=[TestModel1, TestModel2], publications=self.t3b)
         self.assertTrue(self.t2a_t3b in t1_t2_to_3b)
         self.assertEqual(len(t1_t2_to_3b), 1)
-    
-    def test_get_publishable_list(self):
-        # should not be able to pass list of publishables
-        self.assertRaises(TypeError,
-            Droplet.objects.get_publishable_list, publishable_model=[TestModel1, TestModel2])
         
-        # by publication
-        t1_on_t2a = Droplet.objects.get_publishable_list(publishable_model=TestModel1, publications=self.t2a)
-        self.assertTrue(self.t1a in t1_on_t2a)
-        self.assertTrue(self.t1b in t1_on_t2a)
-        self.assertEqual(len(t1_on_t2a), 2)
-        self.assertTrue(isinstance(t1_on_t2a[0].published, datetime))
-        self.assertEqual(t1_on_t2a[0].publication, self.t2a)
-        self.assertTrue(isinstance(t1_on_t2a[1].published, datetime))
-        self.assertEqual(t1_on_t2a[1].publication, self.t2a)
+        #by publishable instance
+        t1a_pubs = Droplet.objects.get_list(publishable=self.t1a)
+        self.assertTrue(self.t1a_t2a in t1a_pubs)
+        self.assertTrue(self.t1a_t3a in t1a_pubs)
+        self.assertEqual(len(t1a_pubs), 2)
+    
+    def test_filtered_get_list(self):
+        #by_year
+        year_2010 = Droplet.objects.get_list(filters={'published__year': 2010})
+        self.assertTrue(self.t1a_t2a not in year_2010)
+        self.assertEqual(len(year_2010), 4)
+        
+        #include_old
+        month_06_old = Droplet.objects.get_list(filters={'published__month': 6}, include_old=True)
+        self.assertTrue(self.t2a_t3b_old in month_06_old)
+        self.assertEqual(len(month_06_old), 4)
+        
+        #include_future
+        month_06_future = Droplet.objects.get_list(filters={'published__month': 6}, include_future=True)
+        self.assertTrue(self.t2a_t3b_future in month_06_future)
+        self.assertEqual(len(month_06_future), 4)
 
 
 __all__ = ('ManagerTest',)

@@ -34,6 +34,9 @@ class Droplet(models.Model):
     
     objects = DropletManager()
     
+    class Meta:
+        ordering = ['-published']
+    
     def __unicode__(self):
         return '%s (%s) on %s (%s)' % (self.publishable,
             self.publishable_type, self.publication, self.publication_type)
