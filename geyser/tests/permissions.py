@@ -10,7 +10,7 @@ from geyser.tests.testapp.models import TestModel1, TestModel2, TestModel3
 
 
 class PermissionTest(GeyserTestCase):
-    fixtures = ['test_users.json']
+    fixtures = ['users.json']
     
     def setUp(self):
         settings.GEYSER_PUBLISHABLES = {
