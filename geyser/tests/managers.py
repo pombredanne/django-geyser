@@ -20,7 +20,6 @@ class ManagerTest(GeyserTestCase):
             },
             'testapp.testmodel2': {
                 'publish_to': ('testapp.testmodel3',),
-                'published_annotation': 'pub_date',
             }
         }
         self.t1a = TestModel1.objects.get(pk=1)
@@ -90,20 +89,31 @@ class ManagerTest(GeyserTestCase):
         self.assertEqual(len(t1a_pubs), 2)
     
     def test_filtered_get_list(self):
-        #by_year
-        year_2010 = Droplet.objects.get_list(filters={'published__year': 2010})
-        self.assertTrue(self.t1a_t2a not in year_2010)
-        self.assertEqual(len(year_2010), 4)
+        #by year
+        year_2010_kwarg = Droplet.objects.get_list(year=2010)
+        self.assertTrue(self.t1a_t2a not in year_2010_kwarg)
+        self.assertEqual(len(year_2010_kwarg), 4)
+        year_2010_filter = Droplet.objects.get_list(filters={'published__year': 2010})
+        self.assertTrue(self.t1a_t2a not in year_2010_filter)
+        self.assertEqual(len(year_2010_filter), 4)
         
-        #include_old
-        month_06_old = Droplet.objects.get_list(filters={'published__month': 6}, include_old=True)
-        self.assertTrue(self.t2a_t3b_old in month_06_old)
-        self.assertEqual(len(month_06_old), 4)
+        #by month include old
+        month_06_kwarg_old = Droplet.objects.get_list(month=6, include_old=True)
+        self.assertTrue(self.t2a_t3b_old in month_06_kwarg_old)
+        self.assertEqual(len(month_06_kwarg_old), 4)
+        month_06_filter_old = Droplet.objects.get_list(filters={'published__month': 6}, include_old=True)
+        self.assertTrue(self.t2a_t3b_old in month_06_filter_old)
+        self.assertEqual(len(month_06_filter_old), 4)
         
-        #include_future
+        #include future
         month_06_future = Droplet.objects.get_list(filters={'published__month': 6}, include_future=True)
         self.assertTrue(self.t2a_t3b_future in month_06_future)
         self.assertEqual(len(month_06_future), 4)
+        
+        #by day kwarg
+        day_27 = Droplet.objects.get_list(day=27)
+        self.assertTrue(self.t2a_t3a in day_27)
+        self.assertEqual(len(day_27), 1)
 
 
 __all__ = ('ManagerTest',)
