@@ -12,18 +12,6 @@ from geyser.tests.testapp.models import TestModel1, TestModel2, TestModel3
 class PermissionTest(GeyserTestCase):
     fixtures = ['users.json']
     
-    def setUp(self):
-        settings.GEYSER_PUBLISHABLES = {
-            'testapp.testmodel1': {
-                'publish_to': ('testapp.testmodel2',),
-                'auto_perms': ('owner',),
-            },
-            'testapp.testmodel2': {
-                'publish_to': ('testapp.testmodel3',),
-            }
-        }
-        authority.autodiscover()
-    
     def test_publishable_permission(self):
         permission_list = site.get_permissions_by_model(TestModel1)
         self.assertTrue(permission_list)
@@ -39,8 +27,9 @@ class PermissionTest(GeyserTestCase):
         permission = permission_list[0]
         self.assertEqual(permission.__name__, 'TestModel3Permission')
         self.assertEqual(permission.label, 'testmodel3_permission')
+        self.assertTrue('publish_testmodel1_to_testmodel3' in permission.checks)
         self.assertTrue('publish_testmodel2_to_testmodel3' in permission.checks)
-        self.assertEqual(len(permission.checks), 5)
+        self.assertEqual(len(permission.checks), 6)
     
     def test_both_permission(self):
         permission_list = site.get_permissions_by_model(TestModel2)
@@ -57,19 +46,20 @@ class PermissionTest(GeyserTestCase):
         user = User.objects.get(pk=2)
         t1_permission = site.get_permissions_by_model(TestModel1)[0]
         user_t1_check = t1_permission(user)
-        t2_permission = site.get_permissions_by_model(TestModel2)[0]
-        user_t2_check = t2_permission(user)
         t1a = TestModel1.objects.create(
-            name='test model with owner "user"',
+            name='test model 1 with owner "user"',
             owner=user
         )
         self.assertTrue(user_t1_check.has_perm('testmodel1_permission.publish_testmodel1', t1a))
         t1b = TestModel1.objects.create(
-            name='test model with owner "user"',
+            name='test model 1 with owner "superuser"',
             owner=superuser
         )
         self.assertFalse(user_t1_check.has_perm('testmodel1_permission.publish_testmodel1', t1b))
-        t2a = TestModel2.objects.create(name='test model with owner "user"')
+        
+        t2_permission = site.get_permissions_by_model(TestModel2)[0]
+        user_t2_check = t2_permission(user)
+        t2a = TestModel2.objects.create(name='test model 2')
         self.assertFalse(user_t2_check.has_perm('testmodel1_permission.publish_testmodel1', t2a))
 
 

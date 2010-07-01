@@ -11,17 +11,7 @@ from geyser.models import Droplet
 class ManagerTest(GeyserTestCase):
     fixtures = ['objects.json', 'droplets.json']
     
-    def setUp(self):
-        settings.GEYSER_PUBLISHABLES = {
-            'testapp.testmodel1': {
-                'publish_to': ('testapp.testmodel2', 'testapp.testmodel3'),
-                'auto_perms': ('owner',),
-                'unique_for_date': ('name',),
-            },
-            'testapp.testmodel2': {
-                'publish_to': ('testapp.testmodel3',),
-            }
-        }
+    def setUp(self):        
         self.t1a = TestModel1.objects.get(pk=1)
         self.t1b = TestModel1.objects.get(pk=2)
         self.t2a = TestModel2.objects.get(pk=1)

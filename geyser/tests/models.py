@@ -13,15 +13,6 @@ class ModelTest(GeyserTestCase):
     fixtures = ['users.json', 'objects.json']
     
     def setUp(self):
-        settings.GEYSER_PUBLISHABLES = {
-            'testapp.testmodel1': {
-                'publish_to': ('testapp.testmodel2',),
-                'unique_for_date': ('name',),
-            },
-            'testapp.testmodel2': {
-                'publish_to': ('testapp.testmodel3',),
-            }
-        }
         self.user = User.objects.get(pk=2)
         self.t1 = TestModel1.objects.get(pk=1)
         self.t2 = TestModel2.objects.get(pk=1)
