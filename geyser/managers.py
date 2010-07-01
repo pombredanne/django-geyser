@@ -4,6 +4,8 @@ from django.db.models import Manager, Q
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 
+from authority.sites import site as auth_site
+from authority.models import Permission
 
 class DropletManager(Manager):
     """
@@ -12,6 +14,7 @@ class DropletManager(Manager):
     """
     
     def get_query_set(self):
+        #this select_related doesn't actually do anything
         return super(DropletManager, self).get_query_set().select_related('publishable', 'publication')
     
     def get_list(self, **kwargs):
@@ -73,3 +76,27 @@ class DropletManager(Manager):
             filters['published__lte'] = datetime.now()
         
         return self.filter(*queries, **filters)
+    
+    def get_allowed_publications(self, user, publishable):
+        Publishable = publishable.__class__
+        publishable_model = Publishable.__name__.lower()
+        
+        PublishablePermission = auth_site.get_permissions_by_model(Publishable)[0]
+        if not PublishablePermission(user).has_perm('%s_permission.publish_%s'
+                % (publishable_model, publishable_model), publishable):
+            return None
+        
+        publications = []
+        publishable_key = '%s.%s' % (Publishable._meta.app_label, publishable_model)
+        for app_model in settings.GEYSER_PUBLISHABLES[publishable_key]['publish_to']:
+            (publication_app, publication_model) = app_model.split('.')
+            publication_type = ContentType.objects.get(app_label=publication_app, model=publication_model)
+            perm_name = '%s_permission.publish_%s_to_%s' % (publication_model, publishable_model, publication_model)
+            PublicationModel = publication_type.model_class()
+            publication_perms = Permission.objects.user_permissions(
+                user, perm_name, PublicationModel)
+            allowed_of_type = PublicationModel.objects.filter(
+                id__in=publication_perms.values_list('object_id', flat=True))
+            publications.extend(allowed_of_type)
+        
+        return publications

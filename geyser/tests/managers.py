@@ -3,13 +3,15 @@ from datetime import datetime
 from django.db.models import Q
 from django.conf import settings
 
+from django.contrib.auth.models import User, Permission
+
 from geyser.tests.base import GeyserTestCase
 from geyser.tests.testapp.models import TestModel1, TestModel2, TestModel3
 from geyser.models import Droplet
 
 
 class ManagerTest(GeyserTestCase):
-    fixtures = ['users.json', 'objects.json', 'droplets.json']
+    fixtures = ['users.json', 'objects.json', 'droplets.json', 'permissions.json']
     
     def setUp(self):        
         self.t1a = TestModel1.objects.get(pk=1)
@@ -24,6 +26,7 @@ class ManagerTest(GeyserTestCase):
         self.t2a_t3b_old = Droplet.objects.get(pk=5)
         self.t2a_t3b = Droplet.objects.get(pk=6)
         self.t2a_t3b_future = Droplet.objects.get(pk=7)
+        self.user = User.objects.get(pk=2)
     
     def test_get_list(self):
         # unfiltered
@@ -104,6 +107,15 @@ class ManagerTest(GeyserTestCase):
         day_27 = Droplet.objects.get_list(day=27)
         self.assertTrue(self.t2a_t3a in day_27)
         self.assertEqual(len(day_27), 1)
+
+    def test_get_allowed(self):
+        add_perm = Permission.objects.get(codename='add_droplet')
+        self.user.user_permissions.add(add_perm)
+        
+        allowed = Droplet.objects.get_allowed_publications(self.user, self.t1a)
+        self.assertTrue(self.t3a in allowed)
+        self.assertTrue(self.t3b in allowed)
+        self.assertEqual(len(allowed), 2)
 
 
 __all__ = ('ManagerTest',)
