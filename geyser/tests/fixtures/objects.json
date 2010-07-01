@@ -12,7 +12,7 @@
         "pk": 2,
         "fields": {
             "name": "test object 1b",
-            "owner": 2
+            "owner": 1
         }
     },
     {

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Publishing {{ object_type_name|capfirst }} "{{ object }}"</h2>
+    
+    {% if can_publish_somewhere %}
+        <p>This {{ object_type_name }} will be published in the following places:</p>
+        {% include publish_form_template %}
+    {% else %}
+        <p>You do not have permission to publish this {{ object_type_name }} anywhere.</p>
+    {% endif %}
+{% endblock %}
