@@ -9,7 +9,7 @@ from geyser.models import Droplet
 
 
 class ManagerTest(GeyserTestCase):
-    fixtures = ['objects.json', 'droplets.json']
+    fixtures = ['users.json', 'objects.json', 'droplets.json']
     
     def setUp(self):        
         self.t1a = TestModel1.objects.get(pk=1)
