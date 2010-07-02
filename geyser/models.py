@@ -32,7 +32,7 @@ class Droplet(models.Model):
     published = models.DateTimeField(auto_now_add=True, editable=False)
     updated = models.DateTimeField(auto_now=True, editable=False)
     
-    published_by = models.ForeignKey(User, editable=False, related_name='published_droplets')
+    published_by = models.ForeignKey(User, null=True, blank=True, editable=False, related_name='published_droplets')
     updated_by = models.ForeignKey(User, null=True, blank=True, editable=False, related_name='updated_droplets')
     
     objects = DropletManager()

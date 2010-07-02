@@ -55,8 +55,8 @@ for (app_model, pub_settings) in settings.GEYSER_PUBLISHABLES.items():
                 for field_name in auto_perm_fields:
                     user = getattr(instance, field_name, None)
                     if user:
-                        Permission = model_perm(user)
-                        Permission.assign(check=check, content_object=instance)
+                        permission = model_perm(user)
+                        permission.assign(check=check, content_object=instance)
         add_publish_permissions.__name__ = \
             'add_%s_publish_permissions' % model_name
         post_save.connect(add_publish_permissions, sender=Model)
