@@ -24,6 +24,10 @@ class PublishObject(object):
         if publications is None:
             raise Http404
         
+        current_publications = Droplet.objects.get_list(
+            publishable=publishable, include_future=True
+        ).values_list('publication_type_id', 'publication_id')
+        
         publication_types = []
         formset_data = []
         for publication in publications:
@@ -32,7 +36,7 @@ class PublishObject(object):
             formset_data.append({
                 'type': publication_type.id,
                 'id': publication.id,
-                'publish': False
+                'publish': (publication_type.id, publication.id) in current_publications
             })
         
         if request.method == 'POST':
@@ -55,6 +59,7 @@ class PublishObject(object):
                     else:
                         to_unpublish.append(form.publication)
             Droplet.objects.publish(publishable, to_publish, request.user)
+            Droplet.objects.unpublish(publishable, to_unpublish, request.user)
                  
         return render_to_response(
             'geyser/publish.html',

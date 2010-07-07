@@ -104,9 +104,9 @@ class ViewTest(GeyserTestCase):
         self.assertTrue(any(d.publication == self.t3a for d in published))
         self.assertEqual(len(published), 1)
     
-    def atest_unpublish(self):
+    def test_unpublish(self):
         Droplet.objects.publish(self.t1a, self.t3a, self.user)
-        
+
         self.client.login(username='user', password='')
         
         form_dict = {
@@ -140,7 +140,6 @@ class ViewTest(GeyserTestCase):
         
         published = Droplet.objects.get_list()
         self.assertEqual(len(published), 0)
-
 
 
 __all__ = ('ViewTest',)

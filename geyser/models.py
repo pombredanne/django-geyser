@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 from django.db.models.signals import pre_save
 from django.conf import settings
@@ -47,19 +49,14 @@ class Droplet(models.Model):
 
 def remove_previous_newest(sender, **kwargs):
     instance = kwargs['instance']
-    if not instance.id:
-        publishable_type = ContentType.objects.get_for_model(instance.publishable)
-        publication_type = ContentType.objects.get_for_model(instance.publication)
-        previous_list = Droplet.objects.filter(
-            publishable_type=publishable_type,
-            publishable_id=instance.publishable.id,
-            publication_type=publication_type,
-            publication_id=instance.publication.id,
-            is_newest=True
-        ).exclude(id=instance.id)
-        for previous in previous_list:
-            previous.is_newest = False
-            previous.save()
+    current_list = Droplet.objects.get_list(
+        publishable=instance.publishable,
+        publications=instance.publication
+    )
+    current_list.update(
+        is_newest=False,
+        updated=datetime.now()
+    )
 
 pre_save.connect(remove_previous_newest, sender=Droplet)
 

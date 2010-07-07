@@ -35,7 +35,7 @@ class DropletManager(Manager):
             queries.append(Q(publishable_id=publishable.id))
             publishable_models = publishable
         
-        if publishable_models:
+        if publishable_models is not None:
             if hasattr(publishable_models, '__iter__'):
                 publishable_types = []
                 for publishable_model in publishable_models:
@@ -44,7 +44,7 @@ class DropletManager(Manager):
             else:
                 queries.append(Q(publishable_type=ContentType.objects.get_for_model(publishable_models)))
         
-        if publications:
+        if publications is not None:
             if hasattr(publications, '__iter__'):
                 publications_by_type = {}
                 for publication in publications:
@@ -77,7 +77,7 @@ class DropletManager(Manager):
         
         return self.filter(*queries, **filters)
     
-    def get_allowed_publications(self, publishable, as_user=None):
+    def get_allowed_publications(self, publishable, as_user=None, filter_from=None):
         """
         Return a list of publications to which the given user is allowed to
         publish the given object.
@@ -95,7 +95,7 @@ class DropletManager(Manager):
                     % (publishable_model, publishable_model), publishable):
                 return None
         
-        publications = []
+        allowed_publications = []
         publishable_key = '%s.%s' % (Publishable._meta.app_label, publishable_model)
         for app_model in settings.GEYSER_PUBLISHABLES[publishable_key]['publish_to']:
             (publication_app, publication_model) = app_model.split('.')
@@ -109,27 +109,22 @@ class DropletManager(Manager):
                     as_user, perm_name, Publication)
                 allowed_of_type = Publication.objects.filter(
                     id__in=publication_perms.values_list('object_id', flat=True))
-                publications.extend(allowed_of_type)
+                allowed_publications.extend(allowed_of_type)
             else:
-                publications.extend(Publication.objects.all())
+                allowed_publications.extend(Publication.objects.all())
         
-        return publications
+        if filter_from is None:
+            return allowed_publications
+        else:
+            if not hasattr(filter_from, '__iter__'):
+                filter_from = [filter_from]
+            return filter(lambda p: p in allowed_publications, filter_from)
+    
     
     def publish(self, publishable, publications=None, as_user=None, **droplet_dict):
-        if not (publications or as_user):
-            raise ValueError('Must specify publications or as_user.')
-        
-        if publications is None:
-            publications = self.get_allowed_publications(publishable, as_user)
-        else:
-            if not hasattr(publications, '__iter__'):
-                publications = [publications]
-            if as_user:
-                allowed = self.get_allowed_publications(publishable, as_user)
-                publications = filter(lambda p: p in allowed, publications)
-        
-        droplet_dict['publishable'] = publishable
+        publications = self.get_allowed_publications(publishable, as_user, publications)
 
+        droplet_dict['publishable'] = publishable
         if as_user and 'published_by' not in droplet_dict:
             droplet_dict['published_by'] = as_user
         
@@ -137,5 +132,18 @@ class DropletManager(Manager):
         for publication in set(publications):
             droplet_dict['publication'] = publication
             droplets.append(self.create(**droplet_dict))
+        
+        return droplets
+    
+    
+    def unpublish(self, publishable, publications=None, as_user=None):
+        publications = self.get_allowed_publications(publishable, as_user, publications)
+        droplets = self.get_list(publishable=publishable, publications=publications)
+        
+        update_dict = {'is_newest': False}
+        if as_user:
+            update_dict['updated_by'] = as_user
+        
+        droplets.update(is_newest=False)
         
         return droplets

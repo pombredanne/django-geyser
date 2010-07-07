@@ -32,9 +32,9 @@ class ManagerGetListTest(GeyserTestCase):
     def test_unfiltered(self):
         # unfiltered
         all_pubs = Droplet.objects.get_list()
-        self.assertEqual(len(all_pubs), 5)
+        self.assertEqual(len(all_pubs), 4)
         #test ordering
-        all_list = [self.t2a_t3b, self.t2a_t3a, self.t1a_t3a, self.t1b_t2a, self.t1a_t2a]
+        all_list = [self.t2a_t3a, self.t1a_t3a, self.t1b_t2a, self.t1a_t2a]
         self.assertTrue(all(p == l for (p, l) in zip(all_pubs, all_list)))
     
         # by publication
@@ -60,7 +60,7 @@ class ManagerGetListTest(GeyserTestCase):
     
         # by publishable model list
         t1_t2_pubs = Droplet.objects.get_list(publishable_models=[TestModel1, TestModel2])
-        self.assertEqual(len(t1_t2_pubs), 5)
+        self.assertEqual(len(t1_t2_pubs), 4)
     
         # by publishable model and publication
         t1_to_2a = Droplet.objects.get_list(publishable_models=TestModel1, publications=self.t2a)
@@ -72,8 +72,8 @@ class ManagerGetListTest(GeyserTestCase):
         self.assertEqual(len(t2_to_3a), 1)
         
         # by publishable list and publication
-        t1_t2_to_3b = Droplet.objects.get_list(publishable_models=[TestModel1, TestModel2], publications=self.t3b)
-        self.assertTrue(self.t2a_t3b in t1_t2_to_3b)
+        t1_t2_to_3b = Droplet.objects.get_list(publishable_models=[TestModel1, TestModel2], publications=self.t3b, include_future=True)
+        self.assertTrue(self.t2a_t3b_future in t1_t2_to_3b)
         self.assertEqual(len(t1_t2_to_3b), 1)
         
         #by publishable instance
@@ -86,10 +86,10 @@ class ManagerGetListTest(GeyserTestCase):
         #by year
         year_2010_kwarg = Droplet.objects.get_list(year=2010)
         self.assertTrue(self.t1a_t2a not in year_2010_kwarg)
-        self.assertEqual(len(year_2010_kwarg), 4)
+        self.assertEqual(len(year_2010_kwarg), 3)
         year_2010_filter = Droplet.objects.get_list(filters={'published__year': 2010})
         self.assertTrue(self.t1a_t2a not in year_2010_filter)
-        self.assertEqual(len(year_2010_filter), 4)
+        self.assertEqual(len(year_2010_filter), 3)
         
         #by month include old
         month_06_kwarg_old = Droplet.objects.get_list(month=6, include_old=True)
@@ -102,7 +102,7 @@ class ManagerGetListTest(GeyserTestCase):
         #include future
         month_06_future = Droplet.objects.get_list(filters={'published__month': 6}, include_future=True)
         self.assertTrue(self.t2a_t3b_future in month_06_future)
-        self.assertEqual(len(month_06_future), 4)
+        self.assertEqual(len(month_06_future), 3)
         
         #by day kwarg
         day_27 = Droplet.objects.get_list(day=27)
@@ -171,4 +171,35 @@ class ManagerPublishTest(GeyserTestCase):
         self.assertEqual(droplets[0].published_by, self.user)
 
 
-__all__ = ('ManagerGetListTest', 'ManagerPublishTest')
+class ManagerUnpublishTest(GeyserTestCase):
+    fixtures = ['users.json', 'objects.json', 'permissions.json', 'droplets.json']
+    
+    def setUp(self):        
+        self.t1a = TestModel1.objects.get(pk=1)
+        self.t2a = TestModel2.objects.get(pk=1)
+        self.t3a = TestModel3.objects.get(pk=1)
+        self.t1a_t2a = Droplet.objects.get(pk=1)
+        self.t1a_t3a = Droplet.objects.get(pk=3)
+
+        self.user = User.objects.get(pk=2)
+        add_perm = Permission.objects.get(codename='add_droplet')
+        self.user.user_permissions.add(add_perm)
+    
+    def test_unpublish(self):
+        Droplet.objects.unpublish(self.t1a, self.t2a)
+        self.t1a_t2a = Droplet.objects.get(pk=1)
+        all_droplets = Droplet.objects.all()
+        self.assertTrue(self.t1a_t2a in all_droplets)
+        self.assertFalse(self.t1a_t2a.is_newest)
+        list_droplets = Droplet.objects.get_list()
+        self.assertFalse(any(d.publication == self.t2a and d.publishable == self.t1a for d in list_droplets))
+        
+    def test_unpublish_as_user(self):
+        Droplet.objects.unpublish(self.t1a, as_user=self.user)
+        droplets = Droplet.objects.get_list(publishable=self.t1a)
+        self.assertFalse(self.t1a_t3a in droplets)
+        self.assertTrue(self.t1a_t2a in droplets)
+        self.assertEqual(len(droplets), 1)
+
+
+__all__ = ('ManagerGetListTest', 'ManagerPublishTest', 'ManagerUnpublishTest')
