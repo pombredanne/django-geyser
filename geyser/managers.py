@@ -32,7 +32,7 @@ class DropletManager(Manager):
         day = kwargs.get('day')
         include_old = kwargs.get('include_old', False)
         include_future = kwargs.get('include_future', False)
- 
+        
         if publishable:
             queries.append(Q(publishable_id=publishable.id))
             publishable_models = publishable.__class__
@@ -61,24 +61,20 @@ class DropletManager(Manager):
             queries.append(publishable_q)
         
         if publications is not None:
-            if hasattr(publications, '__iter__'):
-                publications_by_type = {}
-                for publication in publications:
-                    publication_type = ContentType.objects.get_for_model(publication)
-                    publication_pks = publications_by_type.setdefault(publication_type, [])
-                    publication_pks.append(publication.pk)
-                publication_q = Q(pk__isnull=True)
-                for publication_type in publications_by_type:
-                    publication_q = publication_q | Q(
-                        publication_type=publication_type,
-                        publication_id__in=publications_by_type[publication_type]
-                    )
-                queries.append(publication_q)
-            else:
-                queries.append(Q(
-                    publication_type=ContentType.objects.get_for_model(publications),
-                    publication_id=publications.id
-                ))
+            if not hasattr(publications, '__iter__'):
+                publications = [publications]
+            publications_by_type = {}
+            for publication in publications:
+                publication_type = ContentType.objects.get_for_model(publication)
+                publication_pks = publications_by_type.setdefault(publication_type, [])
+                publication_pks.append(publication.pk)
+            publication_q = Q(pk__isnull=True)
+            for publication_type in publications_by_type:
+                publication_q = publication_q | Q(
+                    publication_type=publication_type,
+                    publication_id__in=publications_by_type[publication_type]
+                )
+            queries.append(publication_q)
         
         if year:
             queries.append(Q(published__year=year))
