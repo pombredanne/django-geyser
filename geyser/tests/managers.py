@@ -204,6 +204,7 @@ class ManagerUnpublishTest(GeyserTestCase):
         self.user.user_permissions.add(add_perm)
     
     def test_unpublish(self):
+        t1a_t2a_updated = self.t1a_t2a.updated
         Droplet.objects.unpublish(self.t1a, self.t2a)
         self.t1a_t2a = Droplet.objects.get(pk=1)
         all_droplets = Droplet.objects.all()
@@ -211,6 +212,7 @@ class ManagerUnpublishTest(GeyserTestCase):
         self.assertFalse(self.t1a_t2a.is_newest)
         list_droplets = Droplet.objects.get_list()
         self.assertFalse(any(d.publication == self.t2a and d.publishable == self.t1a for d in list_droplets))
+        self.assertNotEqual(self.t1a_t2a.updated, t1a_t2a_updated)
         
     def test_unpublish_as_user(self):
         Droplet.objects.unpublish(self.t1a, as_user=self.user)
@@ -218,6 +220,8 @@ class ManagerUnpublishTest(GeyserTestCase):
         self.assertFalse(self.t1a_t3a in droplets)
         self.assertTrue(self.t1a_t2a in droplets)
         self.assertEqual(len(droplets), 1)
+        self.t1a_t3a = Droplet.objects.get(pk=3)
+        self.assertEqual(self.t1a_t3a.updated_by, self.user)
 
 
 __all__ = ('ManagerGetListTest', 'ManagerPublishTest', 'ManagerUnpublishTest')

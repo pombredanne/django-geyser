@@ -152,7 +152,7 @@ class DropletManager(Manager):
         publications = self.get_allowed_publications(publishable, as_user, publications)
         droplets = self.get_list(publishable=publishable, publications=publications)
         
-        update_dict = {'is_newest': False}
+        update_dict = {'is_newest': False, 'updated': datetime.now()}
         if as_user:
             update_dict['updated_by'] = as_user
         
