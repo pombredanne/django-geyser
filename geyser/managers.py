@@ -156,6 +156,6 @@ class DropletManager(Manager):
         if as_user:
             update_dict['updated_by'] = as_user
         
-        droplets.update(is_newest=False)
+        droplets.update(**update_dict)
         
         return droplets

@@ -105,7 +105,8 @@ class ViewTest(GeyserTestCase):
         self.assertEqual(len(published), 1)
     
     def test_unpublish(self):
-        Droplet.objects.publish(self.t1a, self.t3a, self.user)
+        droplet = Droplet.objects.publish(self.t1a, self.t3a, self.user)[0]
+        self.assertNotEqual(droplet.updated_by, self.user)
 
         self.client.login(username='user', password='')
         
@@ -140,6 +141,9 @@ class ViewTest(GeyserTestCase):
         
         published = Droplet.objects.get_list()
         self.assertEqual(len(published), 0)
+        
+        droplet = Droplet.objects.all()[0]
+        self.assertEqual(droplet.updated_by, self.user)
 
 
 __all__ = ('ViewTest',)
