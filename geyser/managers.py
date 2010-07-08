@@ -2,6 +2,7 @@ from datetime import datetime
 
 from django.db.models import Manager, Q
 from django.conf import settings
+from django.core.exceptions import FieldError
 from django.contrib.contenttypes.models import ContentType
 
 from authority.sites import site as auth_site
@@ -25,6 +26,7 @@ class DropletManager(Manager):
         publications = kwargs.get('publications', None)
         queries = kwargs.get('queries', [])
         filters = kwargs.get('filters', {})
+        publishable_filters = kwargs.get('publishable_filters', {})
         year = kwargs.get('year')
         month = kwargs.get('month')
         day = kwargs.get('day')
@@ -33,16 +35,30 @@ class DropletManager(Manager):
  
         if publishable:
             queries.append(Q(publishable_id=publishable.id))
-            publishable_models = publishable
+            publishable_models = publishable.__class__
+        
+        if publishable_filters and publishable_models is None:
+            publishable_models = []
+            for publishable_app_model in settings.GEYSER_PUBLISHABLES:
+                (app_name, model_name) = publishable_app_model.split('.')
+                publishable_type = ContentType.objects.get(app_label=app_name, model=model_name)
+                publishable_models.append(publishable_type.model_class())
         
         if publishable_models is not None:
-            if hasattr(publishable_models, '__iter__'):
-                publishable_types = []
-                for publishable_model in publishable_models:
-                    publishable_types.append(ContentType.objects.get_for_model(publishable_model))
-                queries.append(Q(publishable_type__in=publishable_types))
-            else:
-                queries.append(Q(publishable_type=ContentType.objects.get_for_model(publishable_models)))
+            if not hasattr(publishable_models, '__iter__'):
+                publishable_models = [publishable_models]
+            publishable_q = Q(pk__isnull=True)
+            for Model in publishable_models:
+                try:
+                    publishables = Model.objects.filter(**publishable_filters)
+                except FieldError:
+                    pass
+                else:
+                    publishable_q = publishable_q | Q(
+                        publishable_type=ContentType.objects.get_for_model(Model),
+                        publishable_id__in=publishables.values_list('id', flat=True)
+                    )
+            queries.append(publishable_q)
         
         if publications is not None:
             if hasattr(publications, '__iter__'):

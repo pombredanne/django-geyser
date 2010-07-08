@@ -108,6 +108,24 @@ class ManagerGetListTest(GeyserTestCase):
         day_27 = Droplet.objects.get_list(day=27)
         self.assertTrue(self.t2a_t3a in day_27)
         self.assertEqual(len(day_27), 1)
+    
+    def test_publishable_filter(self):
+        #by pk
+        tb_pubs = Droplet.objects.get_list(publishable_filters={'pk': 2})
+        self.assertTrue(self.t1b_t2a in tb_pubs)
+        self.assertEqual(len(tb_pubs), 1)
+        
+        #by name
+        t1a_pubs = Droplet.objects.get_list(publishable_filters={'name': 'test object 1a'})
+        self.assertTrue(self.t1a_t2a in t1a_pubs)
+        self.assertTrue(self.t1a_t3a in t1a_pubs)
+        self.assertEqual(len(t1a_pubs), 2)
+        
+        #by owner
+        user = User.objects.get(pk=2)
+        user_pubs = Droplet.objects.get_list(publishable_filters={'owner': user})
+        self.assertTrue(user_pubs)
+        self.assertTrue(all(d.publishable.owner == user for d in user_pubs))
 
 
 class ManagerPublishTest(GeyserTestCase):
