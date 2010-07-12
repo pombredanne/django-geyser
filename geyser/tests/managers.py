@@ -2,6 +2,7 @@ from datetime import datetime
 
 from django.db.models import Q
 from django.conf import settings
+from django.core.exceptions import ValidationError
 
 from django.contrib.auth.models import User, Permission
 
@@ -189,6 +190,17 @@ class ManagerPublishTest(GeyserTestCase):
         self.assertEqual(droplets[0].published_by, self.user)
 
 
+class ManagerUniquenessTest(GeyserTestCase):
+    def setUp(self):
+        self.t2a = TestModel2.objects.create(name='an object')
+        self.t2b = TestModel2.objects.create(name='an object')
+        self.t3 = TestModel3.objects.create(name='t3 object')
+    
+    def test_unique_for_date(self):
+        da = Droplet.objects.publish(publishable=self.t2a)
+        self.assertRaises(ValidationError, Droplet.objects.publish, publishable=self.t2b)
+
+
 class ManagerUnpublishTest(GeyserTestCase):
     fixtures = ['users.json', 'objects.json', 'permissions.json', 'droplets.json']
     
@@ -224,4 +236,4 @@ class ManagerUnpublishTest(GeyserTestCase):
         self.assertEqual(self.t1a_t3a.updated_by, self.user)
 
 
-__all__ = ('ManagerGetListTest', 'ManagerPublishTest', 'ManagerUnpublishTest')
+__all__ = ('ManagerGetListTest', 'ManagerPublishTest', 'ManagerUniquenessTest', 'ManagerUnpublishTest', )

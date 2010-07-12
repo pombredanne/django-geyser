@@ -135,7 +135,6 @@ class DropletManager(Manager):
     
     def publish(self, publishable, publications=None, as_user=None, **droplet_dict):
         publications = self.get_allowed_publications(publishable, as_user, publications)
-
         droplet_dict['publishable'] = publishable
         if as_user and 'published_by' not in droplet_dict:
             droplet_dict['published_by'] = as_user

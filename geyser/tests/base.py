@@ -28,10 +28,10 @@ class GeyserTestCase(TestCase):
             'testapp.testmodel1': {
                 'publish_to': ('testapp.testmodel2', 'testapp.testmodel3'),
                 'auto_perms': ('owner',),
-                'unique_for_date': ('name',),
             },
             'testapp.testmodel2': {
                 'publish_to': ('testapp.testmodel3',),
+                'unique_for_date': ('name',),
             }
         }
         authority.autodiscover()
