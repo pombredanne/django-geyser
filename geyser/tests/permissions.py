@@ -1,8 +1,5 @@
-from django.conf import settings
-
 from django.contrib.auth.models import User
 
-import authority
 from authority.sites import site
 
 from geyser.tests.base import GeyserTestCase

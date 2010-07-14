@@ -1,12 +1,6 @@
-from datetime import datetime
-
-from django.db.models import Q
-from django.conf import settings
 from django.core.exceptions import ValidationError
 
 from django.contrib.auth.models import User, Permission
-
-from authority.sites import site
 
 from geyser.tests.base import GeyserTestCase
 from geyser.tests.testapp.models import TestModel1, TestModel2, TestModel3

@@ -1,11 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render_to_response, get_object_or_404
-from django.conf import settings
 
 from django.contrib.contenttypes.models import ContentType
-
-from authority.sites import site as auth_site
-from authority.models import Permission
 
 from geyser.forms import PublishFormSet
 from geyser.models import Droplet
