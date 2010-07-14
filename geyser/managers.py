@@ -8,6 +8,7 @@ from django.contrib.contenttypes.models import ContentType
 from authority.sites import site as auth_site
 from authority.models import Permission
 
+
 class DropletManager(Manager):
     """
     Custom manager for published objects, to support lookups by types and

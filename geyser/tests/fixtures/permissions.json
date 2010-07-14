@@ -1,17 +1,6 @@
 [
     {
         "model": "authority.permission",
-        "pk": 1,
-        "fields": {
-            "codename": "testmodel1_permission.publish_testmodel1",
-            "content_type": ["testapp", "testmodel1"],
-            "object_id": 1,
-            "user": 2,
-            "approved": true
-        }
-    },
-    {
-        "model": "authority.permission",
         "pk": 2,
         "fields": {
             "codename": "testmodel3_permission.publish_testmodel1_to_testmodel3",

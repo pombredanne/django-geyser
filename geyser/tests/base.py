@@ -7,6 +7,7 @@ from django.test import TestCase
 
 import authority
 
+
 class GeyserTestCase(TestCase):
     def _pre_setup(self):
         self._original_template_dirs = settings.TEMPLATE_DIRS

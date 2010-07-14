@@ -6,6 +6,7 @@ from django.contrib.contenttypes.models import ContentType
 from geyser.forms import PublishFormSet
 from geyser.models import Droplet
 
+
 class PublishObject(object):
     """A view used to publish the given model."""
     
