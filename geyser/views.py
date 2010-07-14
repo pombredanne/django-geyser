@@ -10,8 +10,9 @@ from geyser.models import Droplet
 class PublishObject(object):
     """A view used to publish the given model."""
     
-    def __init__(self, Model):
+    def __init__(self, Model, **kwargs):
         self.Model = Model
+        self.template = kwargs.get('template', 'geyser/publish.html')
     
     def __call__(self, request, object_pk):
         """The actual view function."""
@@ -59,7 +60,7 @@ class PublishObject(object):
             Droplet.objects.unpublish(publishable, to_unpublish, request.user)
                  
         return render_to_response(
-            'geyser/publish.html',
+            self.template,
             {
                 'object': publishable,
                 'publication_formset': publication_formset
