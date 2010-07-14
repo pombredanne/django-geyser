@@ -7,6 +7,7 @@ from django.contrib.contenttypes.models import ContentType
 
 from geyser.permission_models import PublishablePermission, PublicationPermission
 
+
 class DropletManager(Manager):
     """
     Custom manager for published objects, to support lookups by types and
@@ -14,8 +15,7 @@ class DropletManager(Manager):
     """
     
     def get_query_set(self):
-        #this select_related doesn't actually do anything
-        return super(DropletManager, self).get_query_set().select_related('publishable', 'publication')
+        return super(DropletManager, self).get_query_set().select_related('first')
     
     def get_list(self, **kwargs):
         """Get a list of Droplet instances, filtered in useful ways."""
