@@ -5,9 +5,7 @@ from django.conf import settings
 from django.core.exceptions import FieldError
 from django.contrib.contenttypes.models import ContentType
 
-from authority.sites import site as auth_site
-from authority.models import Permission
-
+from geyser.permission_models import PublishablePermission, PublicationPermission
 
 class DropletManager(Manager):
     """
@@ -98,28 +96,29 @@ class DropletManager(Manager):
         """
         
         Publishable = publishable.__class__
-        publishable_model = Publishable.__name__.lower()
+        publishable_type = ContentType.objects.get_for_model(Publishable)
         
-        if as_user:
+        if as_user and not as_user.is_superuser:
             if not as_user.has_perm('geyser.add_droplet'):
                 return None
-            PublishablePermission = auth_site.get_permissions_by_model(Publishable)[0]
-            if not PublishablePermission(as_user).has_perm('%s_permission.publish_%s'
-                    % (publishable_model, publishable_model), publishable):
+            if not PublishablePermission.objects.filter(
+                    content_type=publishable_type,
+                    object_id=publishable.id,
+                    user=as_user).exists():
                 return None
         
         allowed_publications = []
-        publishable_key = '%s.%s' % (Publishable._meta.app_label, publishable_model)
+        publishable_key = '%s.%s' % (publishable_type.app_label, publishable_type.model)
         for app_model in settings.GEYSER_PUBLISHABLES[publishable_key]['publish_to']:
             (publication_app, publication_model) = app_model.split('.')
             publication_type = ContentType.objects.get(
                 app_label=publication_app, model=publication_model)
             Publication = publication_type.model_class()
             if as_user and not as_user.is_superuser:
-                perm_name = '%s_permission.publish_%s_to_%s' % \
-                    (publication_model, publishable_model, publication_model)
-                publication_perms = Permission.objects.user_permissions(
-                    as_user, perm_name, Publication)
+                publication_perms = PublicationPermission.objects.filter(
+                    content_type=publication_type,
+                    publishable_type=publishable_type,
+                    user=as_user)
                 allowed_of_type = Publication.objects.filter(
                     id__in=publication_perms.values_list('object_id', flat=True))
                 allowed_publications.extend(allowed_of_type)

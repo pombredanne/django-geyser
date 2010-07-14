@@ -3,8 +3,6 @@ from django.forms.formsets import BaseFormSet, Form
 from django.contrib.auth.models import User, Permission
 from django.contrib.contenttypes.models import ContentType
 
-import authority
-
 from geyser.models import Droplet
 from geyser.tests.base import GeyserTestCase
 from geyser.tests.testapp.models import TestModel1, TestModel2, TestModel3

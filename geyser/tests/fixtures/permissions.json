@@ -1,24 +1,22 @@
 [
     {
-        "model": "authority.permission",
-        "pk": 2,
+        "model": "geyser.publicationpermission",
+        "pk": 1,
         "fields": {
-            "codename": "testmodel3_permission.publish_testmodel1_to_testmodel3",
             "content_type": ["testapp", "testmodel3"],
             "object_id": 1,
-            "user": 2,
-            "approved": true
+            "publishable_type": ["testapp", "testmodel1"],
+            "user": 2
         }
     },
     {
-        "model": "authority.permission",
-        "pk": 3,
+        "model": "geyser.publicationpermission",
+        "pk": 2,
         "fields": {
-            "codename": "testmodel3_permission.publish_testmodel1_to_testmodel3",
             "content_type": ["testapp", "testmodel3"],
             "object_id": 2,
-            "user": 2,
-            "approved": true
+            "publishable_type": ["testapp", "testmodel1"],
+            "user": 2
         }
     }
 ]

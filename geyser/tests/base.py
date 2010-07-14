@@ -5,8 +5,6 @@ from django.core.management import call_command
 from django.db.models import loading
 from django.test import TestCase
 
-import authority
-
 
 class GeyserTestCase(TestCase):
     def _pre_setup(self):
@@ -35,7 +33,7 @@ class GeyserTestCase(TestCase):
                 'unique_for_date': ('name',),
             }
         }
-        authority.autodiscover()
+        import geyser.auto_perms
         
         super(TestCase, self)._pre_setup()
     

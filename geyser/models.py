@@ -9,8 +9,14 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.contrib.auth.models import User
 
-from geyser.bigint import BigAutoField
 from geyser.managers import DropletManager
+from geyser.bigint import BigAutoField
+from geyser.permission_models import *
+
+#Droplet uses a custom Field that South won't recognize unless this is added
+if 'south' in settings.INSTALLED_APPS:
+    from south.modelsinspector import add_introspection_rules
+    add_introspection_rules([], ["^geyser\.bigint"])
 
 
 class DropletFirst(models.Model):
@@ -127,8 +133,3 @@ def remove_previous_newest(sender, **kwargs):
     )
 
 pre_save.connect(remove_previous_newest, sender=Droplet)
-
-
-if 'south' in settings.INSTALLED_APPS:
-    from south.modelsinspector import add_introspection_rules
-    add_introspection_rules([], ["^sprinkler\.bigint"])
