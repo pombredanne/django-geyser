@@ -1,0 +1,110 @@
+from timeit import default_timer as now
+
+from django.conf import settings
+from django.db import connection, reset_queries
+from django.contrib.contenttypes.models import ContentType
+
+from geyser.query import GenericQuerySet
+from geyser.models import Droplet
+from geyser.tests.base import GeyserTestCase, NUM_RELATED_TYPES
+from geyser.tests.testapp.models import TestModel1
+
+
+class QuerySetTestCase(GeyserTestCase):
+    fixtures = ['users.json', 'objects.json', 'droplets.json']
+    
+    def setUp(self):
+        ContentType.objects.clear_cache()
+        settings.DEBUG = True
+        reset_queries()
+    
+    def tearDown(self):
+        settings.DEBUG = False
+    
+    def test_lazy_evaluation(self):        
+        all = GenericQuerySet(Droplet).all()
+        query_count = len(connection.queries)
+        all.select_related_generic()
+        self.assertEqual(len(connection.queries), query_count)
+
+    def test_select_all(self):
+        all = list(GenericQuerySet(Droplet).select_related_generic())
+        query_count = len(connection.queries)
+        
+        for droplet in all:
+            droplet.publishable
+            droplet.publication
+        self.assertEqual(len(connection.queries), query_count)
+    
+    def test_membership_test(self):
+        a = GenericQuerySet(Droplet).get(pk=1)
+        all = GenericQuerySet(Droplet).select_related_generic()
+        self.assertTrue(a in all)
+        
+        query_count = len(connection.queries)
+        all[0].publishable
+        self.assertEqual(len(connection.queries), query_count)
+    
+    def test_after_select_related(self):
+        all = list(GenericQuerySet(Droplet).select_related('first').select_related_generic())
+        query_count = len(connection.queries)
+        self.assertEqual(query_count, NUM_RELATED_TYPES + 1)
+        for droplet in all:
+            droplet.first
+            droplet.publishable
+            droplet.publication
+        self.assertEqual(len(connection.queries), query_count)
+    
+    def test_before_select_related(self):
+        all = list(GenericQuerySet(Droplet).select_related_generic().select_related('first'))
+        query_count = len(connection.queries)
+        self.assertEqual(query_count, NUM_RELATED_TYPES + 1)
+        for droplet in all:
+            droplet.first
+            droplet.publishable
+            droplet.publication
+        self.assertEqual(len(connection.queries), query_count)
+    
+    def test_auto_content_type_select_related(self):
+        all = list(GenericQuerySet(Droplet).select_related_generic())
+        self.assertEqual(len(connection.queries), NUM_RELATED_TYPES + 1)
+
+
+class QuerySetTimeTestCase(GeyserTestCase):
+    fixtures = ['users.json', 'manyobjects.json']
+    
+    def setUp(self):
+        ContentType.objects.clear_cache()
+        settings.DEBUG = True
+        reset_queries()
+    
+    def tearDown(self):
+        settings.DEBUG = False
+     
+    def test_execution_time(self):
+        # this might be a bad test
+        
+        TARGET_RATIO = .5
+        # something is probably wrong if it's not at least 50% faster
+        
+        start = now()
+        for i in range(10):
+            all = GenericQuerySet(Droplet).all()
+            for droplet in all:
+                droplet.publishable
+                droplet.publication
+        normal_time = now() - start
+        
+        start = now()
+        for i in range(10):
+            all = GenericQuerySet(Droplet).select_related_generic()
+            for droplet in all:
+                droplet.publishable
+                droplet.publication
+        select_generic_time = now() - start
+        
+        ratio = select_generic_time / normal_time
+        self.assertTrue(ratio <= TARGET_RATIO)
+
+
+__all__ = ('QuerySetTestCase', 'QuerySetTimeTestCase',)

@@ -5,6 +5,7 @@ from django.core.management import call_command
 from django.db.models import loading
 from django.test import TestCase
 
+NUM_RELATED_TYPES = 3
 
 class GeyserTestCase(TestCase):
     def _pre_setup(self):

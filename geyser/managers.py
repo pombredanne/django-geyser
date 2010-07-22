@@ -6,7 +6,7 @@ from django.core.exceptions import FieldError
 from django.contrib.contenttypes.models import ContentType
 
 from geyser.permission_models import PublishablePermission, PublicationPermission
-
+from geyser.query import GenericQuerySet
 
 class DropletManager(Manager):
     """
@@ -15,7 +15,7 @@ class DropletManager(Manager):
     """
     
     def get_query_set(self):
-        return super(DropletManager, self).get_query_set().select_related('first')
+        return GenericQuerySet(self.model, using=self.db).select_related('first').select_related_generic()
     
     def get_list(self, **kwargs):
         """Get a list of Droplet instances, filtered in useful ways."""

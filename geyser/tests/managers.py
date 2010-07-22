@@ -1,5 +1,7 @@
 from django.core.exceptions import ValidationError
 
+from django.conf import settings
+from django.db import connection, reset_queries
 from django.contrib.auth.models import User, Permission
 
 from geyser.tests.base import GeyserTestCase
@@ -123,6 +125,26 @@ class ManagerGetListTest(GeyserTestCase):
         self.assertTrue(all(d.publishable.owner == user for d in user_pubs))
 
 
+class ManagerSelectRelatedTest(GeyserTestCase):
+    fixtures = ['users.json', 'objects.json', 'droplets.json']
+    
+    def setUp(self):
+        settings.DEBUG = True
+        reset_queries()
+    
+    def tearDown(self):
+        settings.DEBUG = False
+    
+    def test_select_related(self):
+        t1_pubs = list(Droplet.objects.get_list(publishable_models=TestModel1))
+        query_count = len(connection.queries)
+        for droplet in t1_pubs:
+            droplet.first
+            droplet.publishable
+            droplet.publication
+        self.assertEqual(len(connection.queries), query_count)
+
+
 class ManagerPublishTest(GeyserTestCase):
     fixtures = ['users.json', 'objects.json', 'permissions.json']
     
@@ -230,4 +252,4 @@ class ManagerUnpublishTest(GeyserTestCase):
         self.assertEqual(self.t1a_t3a.updated_by, self.user)
 
 
-__all__ = ('ManagerGetListTest', 'ManagerPublishTest', 'ManagerUniquenessTest', 'ManagerUnpublishTest', )
+__all__ = ('ManagerGetListTest', 'ManagerSelectRelatedTest', 'ManagerPublishTest', 'ManagerUniquenessTest', 'ManagerUnpublishTest', )
