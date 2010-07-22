@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from geyser.tests.base import GeyserTestCase
 from geyser.tests.testapp.models import TestModel1, TestModel2
 
-from geyser.models import Droplet, DropletFirst
+from geyser.models import Droplet
 
 
 class ModelTest(GeyserTestCase):
@@ -46,11 +46,7 @@ class ModelTest(GeyserTestCase):
         self.assertEqual(droplet1.first.published, droplet1.published)
         self.assertEqual(droplet1.first.published_by, self.user)
         
-        first1 = DropletFirst.objects.get(
-            publishable_type=ContentType.objects.get_for_model(TestModel1),
-            publishable_id=1
-        )
-        self.assertEqual(droplet1.first, first1)
+        self.assertEqual(droplet1.first, droplet1)
         
         droplet2 = Droplet(
             publishable=self.t1,
@@ -60,11 +56,7 @@ class ModelTest(GeyserTestCase):
         droplet2.save()
         self.assertEqual(droplet2.first, droplet1.first)
         
-        first1 = DropletFirst.objects.get(
-            publishable_type=ContentType.objects.get_for_model(TestModel1),
-            publishable_id=1
-        )
-        self.assertEqual(first1.published_by, self.user)
+        self.assertEqual(droplet2.first.published_by, self.user)
 
 
 __all__ = ('ModelTest',)

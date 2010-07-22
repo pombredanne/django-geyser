@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.core.exceptions import ValidationError
 
 from django.conf import settings
@@ -212,9 +214,18 @@ class ManagerUniquenessTest(GeyserTestCase):
         self.t2b = TestModel2.objects.create(name='an object')
         self.t3 = TestModel3.objects.create(name='t3 object')
     
-    def test_unique_for_date(self):
+    def test_first_publish(self):
         da = Droplet.objects.publish(publishable=self.t2a)
         self.assertRaises(ValidationError, Droplet.objects.publish, publishable=self.t2b)
+    
+    def test_later_publish(self):
+        d = Droplet.objects.create(
+            publishable=self.t2a,
+            publication=self.t3,
+            published=datetime(2010, 7, 21)
+        )
+        da = Droplet.objects.publish(publishable=self.t2a)
+        Droplet.objects.publish(publishable=self.t2b)
 
 
 class ManagerUnpublishTest(GeyserTestCase):
