@@ -16,7 +16,7 @@ class GenericQuerySet(QuerySet):
     def _clone(self, *args, **kwargs):
         clone = super(GenericQuerySet, self)._clone(*args, **kwargs)
         clone._model_generic_fields = self._model_generic_fields
-        clone._select_related_fields = []
+        clone._select_related_fields = self._select_related_fields
         return clone
     
     def select_related_generic(self):

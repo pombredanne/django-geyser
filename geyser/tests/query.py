@@ -44,7 +44,8 @@ class QuerySetTestCase(GeyserTestCase):
         self.assertEqual(len(connection.queries), query_count)
     
     def test_after_select_related(self):
-        all = list(GenericQuerySet(Droplet).select_related('first').select_related_generic())
+        all = list(GenericQuerySet(Droplet).select_related('first').all().select_related_generic())
+        # the .all is to test chaining (the _clone method)
         query_count = len(connection.queries)
         self.assertEqual(query_count, NUM_RELATED_TYPES + 1)
         for droplet in all:
@@ -54,7 +55,8 @@ class QuerySetTestCase(GeyserTestCase):
         self.assertEqual(len(connection.queries), query_count)
     
     def test_before_select_related(self):
-        all = list(GenericQuerySet(Droplet).select_related_generic().select_related('first'))
+        all = list(GenericQuerySet(Droplet).select_related_generic().all().select_related('first'))
+        # the .all is to test chaining (the _clone method)
         query_count = len(connection.queries)
         self.assertEqual(query_count, NUM_RELATED_TYPES + 1)
         for droplet in all:
@@ -65,7 +67,7 @@ class QuerySetTestCase(GeyserTestCase):
     
     def test_auto_content_type_select_related(self):
         all = list(GenericQuerySet(Droplet).select_related_generic())
-        self.assertEqual(len(connection.queries), NUM_RELATED_TYPES + 1)
+        self.assertEqual(len(connection.queries), NUM_RELATED_TYPES + 1)    
 
 
 class QuerySetTimeTestCase(GeyserTestCase):
