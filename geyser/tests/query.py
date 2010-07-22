@@ -2,7 +2,6 @@ from timeit import default_timer as now
 
 from django.conf import settings
 from django.db import connection, reset_queries
-from django.contrib.contenttypes.models import ContentType
 
 from geyser.query import GenericQuerySet
 from geyser.models import Droplet
@@ -14,7 +13,6 @@ class QuerySetTestCase(GeyserTestCase):
     fixtures = ['users.json', 'objects.json', 'droplets.json']
     
     def setUp(self):
-        ContentType.objects.clear_cache()
         settings.DEBUG = True
         reset_queries()
     
@@ -74,7 +72,6 @@ class QuerySetTimeTestCase(GeyserTestCase):
     fixtures = ['users.json', 'manyobjects.json']
     
     def setUp(self):
-        ContentType.objects.clear_cache()
         settings.DEBUG = True
         reset_queries()
     
