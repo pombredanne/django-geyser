@@ -12,13 +12,38 @@ class DropletManager(Manager):
     """
     Custom manager for published objects, to support lookups by types and
     instances of publishables and publications.
+    
     """
     
     def get_query_set(self):
+        """Returns a GenericQuerySet with related fields pre-selected."""
         return GenericQuerySet(self.model, using=self.db).select_related('first').select_related_generic()
     
     def get_list(self, **kwargs):
-        """Get a list of Droplet instances, filtered in useful ways."""
+        """
+        Returns a list of Droplet instances, allowing for special filters.
+        
+        Accepts the following filters as keyword arguments:
+        publishable: An instance of a publishable model. Returns publishings
+            of this object only.
+        publishable_models: One or more (in a list or tuple) publishable model
+            classes. Returns publishings of these models only. Overridden by
+            publishable if both are given.
+        publications: One or more (in a list or tuple) publication instances.
+            Only publications to these will be returned.
+        year: Return only publications in the given year.
+        month: Similar to year. To get publishings in a specific month of a
+            specific year, pass both.
+        day: Similar to year and month.
+        publishable_filters: Filters to apply to the publishable model(s).
+            Only publishings of objects matching these filters will be
+            returned.
+        include_old: Boolean indicating whether to include Droplets that have
+            been "unpushlished". Default is False.
+        include_future: Boolean, whether to include Droplets with a publish
+            date in the future. Default is False.
+        
+        """
         
         publishable = kwargs.get('publishable', None)
         publishable_models = kwargs.get('publishable_models', None)
@@ -35,8 +60,10 @@ class DropletManager(Manager):
         if publishable:
             queries.append(Q(publishable_id=publishable.id))
             publishable_models = publishable.__class__
+            # if publishable is given, filter on its model
         
         if publishable_filters and publishable_models is None:
+            # if publishable filters is given, we must populate the model list
             publishable_models = []
             for publishable_app_model in settings.GEYSER_PUBLISHABLES:
                 (app_name, model_name) = publishable_app_model.split('.')
@@ -50,6 +77,8 @@ class DropletManager(Manager):
             for Model in publishable_models:
                 try:
                     publishables = Model.objects.filter(**publishable_filters)
+                    # if no filters were given, this will simply return all
+                    # publishables of this type
                 except FieldError:
                     pass
                 else:
@@ -57,6 +86,7 @@ class DropletManager(Manager):
                         publishable_type=ContentType.objects.get_for_model(Model),
                         publishable_id__in=publishables.values_list('id', flat=True)
                     )
+                    # add an OR for each publishable type
             queries.append(publishable_q)
         
         if publications is not None:
@@ -73,6 +103,7 @@ class DropletManager(Manager):
                     publication_type=publication_type,
                     publication_id__in=publications_by_type[publication_type]
                 )
+                # add an OR for each type, similar to th publishable query
             queries.append(publication_q)
         
         if year:
@@ -90,8 +121,16 @@ class DropletManager(Manager):
     
     def get_allowed_publications(self, publishable, as_user=None, filter_from=None):
         """
-        Return a list of publications to which the given user is allowed to
-        publish the given object.
+        Returns a list of publications to which the given publishable object
+        can be published.
+        
+        as_user, if given, specifies a user whose permissions should be
+        considered when determining where the object can be published. If not
+        given, the object will be considered allowed to publish to any related
+        publications from the GEYSER_PUBLISHABLES setting.
+        
+        filter_from, if given, specifies the "starting list" of publications
+        which will be filtered by settings and user permissions.
         
         """
         
@@ -142,6 +181,29 @@ class DropletManager(Manager):
     
     
     def publish(self, publishable, publications=None, as_user=None, **droplet_dict):
+        """
+        Publishes the given publishable object.
+        
+        Where the object is published is determined by the publications and
+        as_user keyword arguments (see below), and is filtered by the the
+        get_allowed_publications method.
+        
+        publications can be given as a list of publications to which the
+        object should be published. If omitted, the publishable is published
+        to all publications available for it.
+        
+        as_user specifies a user whose permissions should be taken into
+        account when publishing. The object will only be published to
+        publications to which the user is allowed to publish it, and the
+        published_by attribute will be set to this user if not otherwise
+        given. This can further restrict the list of publications, even if
+        they are given explicitly.
+        
+        Any additional keyword arguments are passed to the Droplet
+        constructor to specify explicit values for Droplet fields.
+        
+        """
+        
         publications = self.get_allowed_publications(publishable, as_user, publications)
         droplet_dict['publishable'] = publishable
         if as_user and 'published_by' not in droplet_dict:
@@ -157,6 +219,17 @@ class DropletManager(Manager):
     
     
     def unpublish(self, publishable, publications=None, as_user=None):
+        """
+        Un-publishes the given publishable.
+        
+        Sets the is_newest flag to False so that (by default) queries do not
+        find these droplets anymore.
+        
+        publications and as_user work exactly as they do for publish(),
+        restricting the list of objects which are affected.
+        
+        """
+        
         publications = self.get_allowed_publications(publishable, as_user, publications)
         droplets = self.get_list(publishable=publishable, publications=publications)
         
