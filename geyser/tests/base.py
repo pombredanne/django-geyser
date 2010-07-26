@@ -34,7 +34,7 @@ class GeyserTestCase(TestCase):
                 'unique_for_date': ('name',),
             }
         }
-        import geyser.auto_perms
+        import geyser.setup_perms
         
         super(TestCase, self)._pre_setup()
     

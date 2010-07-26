@@ -97,31 +97,39 @@ class DropletManager(Manager):
         
         Publishable = publishable.__class__
         publishable_type = ContentType.objects.get_for_model(Publishable)
+        publishable_key = '%s.%s' % (publishable_type.app_label, publishable_type.model)
         
         if as_user and not as_user.is_superuser:
             if not as_user.has_perm('geyser.add_droplet'):
                 return None
-            if not PublishablePermission.objects.filter(
-                    content_type=publishable_type,
-                    object_id=publishable.id,
-                    user=as_user).exists():
-                return None
+            if not as_user.has_perm('geyser.publish_any_%s' % publishable_key):
+                if not as_user.has_perm('geyser.publish_%s' % publishable_key):
+                    return None
+                if not PublishablePermission.objects.filter(
+                        content_type=publishable_type,
+                        object_id=publishable.id,
+                        user=as_user).exists():
+                    return None
         
         allowed_publications = []
-        publishable_key = '%s.%s' % (publishable_type.app_label, publishable_type.model)
         for app_model in settings.GEYSER_PUBLISHABLES[publishable_key]['publish_to']:
             (publication_app, publication_model) = app_model.split('.')
             publication_type = ContentType.objects.get(
                 app_label=publication_app, model=publication_model)
             Publication = publication_type.model_class()
-            if as_user and not as_user.is_superuser:
-                publication_perms = PublicationPermission.objects.filter(
-                    content_type=publication_type,
-                    publishable_type=publishable_type,
-                    user=as_user)
-                allowed_of_type = Publication.objects.filter(
-                    id__in=publication_perms.values_list('object_id', flat=True))
-                allowed_publications.extend(allowed_of_type)
+            publication_key = '%s.%s' % (publication_app, publication_model)
+            
+            if as_user and not as_user.is_superuser and not as_user.has_perm(
+                    'geyser.publish_%s_to_any_%s' % (publishable_key, publication_key)):
+                if as_user.has_perm('geyser.publish_%s_to_%s' %
+                        (publishable_key, publication_key)):
+                    publication_perms = PublicationPermission.objects.filter(
+                        content_type=publication_type,
+                        publishable_type=publishable_type,
+                        user=as_user)
+                    allowed_of_type = Publication.objects.filter(
+                        id__in=publication_perms.values_list('object_id', flat=True))
+                    allowed_publications.extend(allowed_of_type)
             else:
                 allowed_publications.extend(Publication.objects.all())
         
@@ -140,9 +148,10 @@ class DropletManager(Manager):
             droplet_dict['published_by'] = as_user
         
         droplets = []
-        for publication in set(publications):
-            droplet_dict['publication'] = publication
-            droplets.append(self.create(**droplet_dict))
+        if publications:
+            for publication in set(publications):
+                droplet_dict['publication'] = publication
+                droplets.append(self.create(**droplet_dict))
         
         return droplets
     

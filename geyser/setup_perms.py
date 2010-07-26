@@ -1,9 +1,36 @@
 from django.db.models.signals import post_save
 from django.conf import settings
 
+from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 
+from geyser.models import Droplet
 from geyser.permission_models import PublishablePermission
+
+
+droplet_type = ContentType.objects.get_for_model(Droplet)
+for (publishable, options) in settings.GEYSER_PUBLISHABLES.items():
+    Permission.objects.create(
+        name='Can publish a(n) %s' % publishable,
+        content_type=droplet_type,
+        codename='publish_%s' % publishable
+    )
+    Permission.objects.create(
+        name='Can publish any %s' % publishable,
+        content_type=droplet_type,
+        codename='publish_any_%s' % publishable
+    )
+    for publication in options['publish_to']:
+        Permission.objects.create(
+            name='Can publish a(n) %s to a(n) %s' % (publishable, publication),
+            content_type=droplet_type,
+            codename='publish_%s_to_%s' % (publishable, publication)
+        )
+        Permission.objects.create(
+            name='Can publish a(n) %s to any %s' % (publishable, publication),
+            content_type=droplet_type,
+            codename='publish_%s_to_any_%s' % (publishable, publication)
+        )
 
 
 for (app_model, pub_settings) in settings.GEYSER_PUBLISHABLES.items():

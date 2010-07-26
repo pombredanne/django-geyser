@@ -13,15 +13,11 @@ class ViewTest(GeyserTestCase):
     urls = 'geyser.tests.testurls'
     
     def setUp(self):
-        user = User.objects.get(pk=2)
-        add_perm = Permission.objects.get(codename='add_droplet')
-        user.user_permissions.add(add_perm)
         self.user = User.objects.get(pk=2)
         
         self.type3 = ContentType.objects.get_for_model(TestModel3)
         self.t1a = TestModel1.objects.get(pk=1)
         self.t1b = TestModel1.objects.get(pk=2)
-        self.t2a = TestModel2.objects.get(pk=1)
         self.t3a = TestModel3.objects.get(pk=1)
         self.t3b = TestModel3.objects.get(pk=2)
     
@@ -30,9 +26,6 @@ class ViewTest(GeyserTestCase):
         self.assertEqual(unauth_response.status_code, 404)
         
         self.client.login(username='user', password='')
-        
-        t1b_response = self.client.get('/t1/2/')
-        self.assertEqual(t1b_response.status_code, 404)
         
         t1z_response = self.client.get('/t1/26/')
         self.assertEqual(t1z_response.status_code, 404)
@@ -59,9 +52,6 @@ class ViewTest(GeyserTestCase):
         self.assertEqual(unauth_response.status_code, 404)
         
         self.client.login(username='user', password='')
-        
-        t1b_response = self.client.post('/t1/2/')
-        self.assertEqual(t1b_response.status_code, 404)
         
         t1z_response = self.client.post('/t1/26/')
         self.assertEqual(t1z_response.status_code, 404)

@@ -1,12 +1,11 @@
 [
     {
-        "model": "geyser.publicationpermission",
+        "model": "geyser.publishablepermission",
         "pk": 1,
         "fields": {
-            "content_type": ["testapp", "testmodel3"],
+            "content_type": ["testapp", "testmodel1"],
             "object_id": 1,
-            "publishable_type": ["testapp", "testmodel1"],
-            "user": 2
+            "user": 6
         }
     },
     {
@@ -14,9 +13,9 @@
         "pk": 2,
         "fields": {
             "content_type": ["testapp", "testmodel3"],
-            "object_id": 2,
-            "publishable_type": ["testapp", "testmodel1"],
-            "user": 2
+            "object_id": 1,
+            "user": 7,
+            "publishable_type": ["testapp", "testmodel1"]
         }
     }
 ]
