@@ -13,16 +13,14 @@ from geyser.managers import DropletManager
 from geyser.bigint import BigAutoField
 from geyser.permission_models import *
 
-#Droplet uses a custom Field that South won't recognize unless this is added
+# Droplet uses a custom Field that South won't recognize unless this is added
 if 'south' in settings.INSTALLED_APPS:
     from south.modelsinspector import add_introspection_rules
     add_introspection_rules([], ["^geyser\.bigint"])
 
 
 class Droplet(models.Model):
-    """
-    An individual publishing of an object somewhere.
-    """
+    """An individual publishing of an object somewhere."""
     
     id = BigAutoField(primary_key=True)
     first = models.ForeignKey('self', null=True, editable=False)
@@ -64,15 +62,16 @@ class Droplet(models.Model):
         except KeyError:
             return
         for field_name in unique_for_date_fields:
-            publishable_filter = {field_name: getattr(self.publishable, field_name)}
-            matching_publishable_ids = self.publishable.__class__.objects.filter(**publishable_filter).values_list('id', flat=True)
+            filter = {field_name: getattr(self.publishable, field_name)}
+            matching = self.publishable.__class__.objects.filter(**filter)
+            matching_ids = matching.values_list('id', flat=True)
             if self.__class__.objects.filter(
                 publishable_type=self.publishable_type,
-                publishable_id__in=matching_publishable_ids,
+                publishable_id__in=matching_ids,
                 published__year=self.published.year,
                 published__month=self.published.month,
                 published__day=self.published.day,
-                first=models.F('pk')
+                first=models.F('pk') # only worry about "canonical" publishing
             ).exists():
                 raise ValidationError('publishable.%s must be unique for date' % field_name)
 
@@ -94,6 +93,7 @@ pre_save.connect(add_first, sender=Droplet)
 def add_self_first(sender, **kwargs):
     instance = kwargs['instance']
     if not instance.first:
+        # this should only happen if this instance is first
         instance.first = instance
         instance.save()
 
