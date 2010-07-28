@@ -1,3 +1,13 @@
+"""
+This module creates publishing permissions if they do not already exist, and
+adds a listener to add automatic publishing permissions for publishables.
+
+This module simply needs to be imported after all models have been loaded. An
+``import geyser.setup_perms`` statement in your root URLconf should suffice.
+
+"""
+
+
 from django.db.models.signals import post_save
 from django.conf import settings
 
