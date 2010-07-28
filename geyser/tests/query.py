@@ -67,7 +67,16 @@ class QuerySetTestCase(GeyserTestCase):
     
     def test_auto_content_type_select_related(self):
         all = list(GenericQuerySet(Droplet).select_related_generic())
-        self.assertEqual(len(connection.queries), NUM_RELATED_TYPES + 1)    
+        self.assertEqual(len(connection.queries), NUM_RELATED_TYPES + 1)
+    
+    def test_multiple_select_related_generic_calls(self):
+        all = list(GenericQuerySet(Droplet).select_related_generic().select_related_generic())
+        query_count = len(connection.queries)
+        
+        for droplet in all:
+            droplet.publishable
+            droplet.publication
+        self.assertEqual(len(connection.queries), query_count)
 
 
 class QuerySetTimeTestCase(GeyserTestCase):

@@ -6,6 +6,7 @@ from django.contrib.contenttypes.generic import GenericForeignKey
 class GenericQuerySet(QuerySet):
     """
     A queryset that can retrieve generically related objects in bulk queries.
+    
     """
     
     def __init__(self, *args, **kwargs):
@@ -21,23 +22,28 @@ class GenericQuerySet(QuerySet):
     
     def select_related_generic(self):
         """
-        Returns a new QuerySet instance that will fetch and cache generically related objects.
+        Returns a new QuerySet instance that will fetch and cache generically
+        related objects.
+        
         """
         
-        if not self._model_generic_fields:
+        if self._model_generic_fields:
+            return self
+        else:
             model_generic_fields = []
             for field in self.model._meta.virtual_fields:
                 if isinstance(field, GenericForeignKey):
                     model_generic_fields.append(field)
-        if self.query.select_related is True:
-            clone = self._clone()
-            clone._model_generic_fields = model_generic_fields
-            return clone
-        else:
-            fields = self._select_related_fields + [f.ct_field for f in model_generic_fields]
-            clone = super(GenericQuerySet, self).select_related(*fields)
-            clone._model_generic_fields = model_generic_fields
-            return clone
+            if self.query.select_related is True:
+                clone = self._clone()
+                clone._model_generic_fields = model_generic_fields
+                return clone
+            else:
+                fields = self._select_related_fields + \
+                    [f.ct_field for f in model_generic_fields]
+                clone = super(GenericQuerySet, self).select_related(*fields)
+                clone._model_generic_fields = model_generic_fields
+                return clone
     
     def select_related(self, *fields, **kwargs):
         #  guarantees that content type fields for generic foreign keys are
@@ -76,15 +82,16 @@ class GenericQuerySet(QuerySet):
                         ids_for_type = ids_by_type.setdefault(content_type, set())
                         ids_for_type.add(getattr(item, field.fk_field))
                 
-                related_objects = {}
+                objects_by_type = {}
                 for (type, ids) in ids_by_type.items():
-                    related_objects[type] = type.model_class().objects.in_bulk(ids)
+                    objects_by_type[type] = type.model_class().objects.in_bulk(ids)
                 
                 for item in self._result_cache:
                     for field in self._model_generic_fields:
                         content_type = getattr(item, field.ct_field)
                         object_id = getattr(item, field.fk_field)
-                        setattr(item, field.cache_attr, related_objects[content_type][object_id])
+                        related_object = objects_by_type[content_type][object_id]
+                        setattr(item, field.cache_attr, related_object)
             
             return iter(self._result_cache)
         else:
