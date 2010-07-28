@@ -7,6 +7,15 @@ class GenericQuerySet(QuerySet):
     """
     A queryset that can retrieve generically related objects in bulk queries.
     
+    A `GenericQuerySet` preserves the "lazy evaluation" of a normal `QuerySet`
+    while providing the benefits of bulk queries for generically related
+    objects. It waits until it is evaluated to retrieve the related objects.
+    This retrieval does cause the entire queryset to be cached, which could
+    cause performance issues if the queryset is not sliced.
+    
+    The `iterator()` method behaves as it does in a normal `QuerySet`, thus
+    bypassing the caching of related objects entirely.
+    
     """
     
     def __init__(self, *args, **kwargs):
@@ -22,8 +31,8 @@ class GenericQuerySet(QuerySet):
     
     def select_related_generic(self):
         """
-        Returns a new QuerySet instance that will fetch and cache generically
-        related objects.
+        Returns a new `GenericQuerySet` instance that will fetch and cache
+        generically related objects when evaluated.
         
         """
         
