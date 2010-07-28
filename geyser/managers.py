@@ -8,6 +8,7 @@ from django.contrib.contenttypes.models import ContentType
 from geyser.permission_models import PublishablePermission, PublicationPermission
 from geyser.query import GenericQuerySet
 
+
 class DropletManager(Manager):
     """
     Custom manager for published objects, to support lookups by types and
@@ -17,7 +18,8 @@ class DropletManager(Manager):
     
     def get_query_set(self):
         """Returns a GenericQuerySet with related fields pre-selected."""
-        return GenericQuerySet(self.model, using=self.db).select_related('first').select_related_generic()
+        return GenericQuerySet(self.model, using=self.db) \
+            .select_related('first').select_related_generic()
     
     def get_list(self, **kwargs):
         """
@@ -30,7 +32,7 @@ class DropletManager(Manager):
             classes. Returns publishings of these models only. Overridden by
             publishable if both are given.
         publications: One or more (in a list or tuple) publication instances.
-            Only publications to these will be returned.
+            Only publishings to these objects will be returned.
         year: Return only publications in the given year.
         month: Similar to year. To get publishings in a specific month of a
             specific year, pass both.
@@ -39,7 +41,7 @@ class DropletManager(Manager):
             Only publishings of objects matching these filters will be
             returned.
         include_old: Boolean indicating whether to include Droplets that have
-            been "unpushlished". Default is False.
+            been "unpublished". Default is False.
         include_future: Boolean, whether to include Droplets with a publish
             date in the future. Default is False.
         
@@ -67,7 +69,8 @@ class DropletManager(Manager):
             publishable_models = []
             for publishable_app_model in settings.GEYSER_PUBLISHABLES:
                 (app_name, model_name) = publishable_app_model.split('.')
-                publishable_type = ContentType.objects.get(app_label=app_name, model=model_name)
+                publishable_type = ContentType.objects.get(
+                    app_label=app_name, model=model_name)
                 publishable_models.append(publishable_type.model_class())
         
         if publishable_models is not None:
@@ -103,7 +106,7 @@ class DropletManager(Manager):
                     publication_type=publication_type,
                     publication_id__in=publications_by_type[publication_type]
                 )
-                # add an OR for each type, similar to th publishable query
+                # add an OR for each type, similar to the publishable query
             queries.append(publication_q)
         
         if year:
@@ -136,39 +139,51 @@ class DropletManager(Manager):
         
         Publishable = publishable.__class__
         publishable_type = ContentType.objects.get_for_model(Publishable)
-        publishable_key = '%s.%s' % (publishable_type.app_label, publishable_type.model)
+        publishable_str = '%s.%s' % (
+            publishable_type.app_label, publishable_type.model)
         
         if as_user and not as_user.is_superuser:
             if not as_user.has_perm('geyser.add_droplet'):
                 return None
-            if not as_user.has_perm('geyser.publish_any_%s' % publishable_key):
-                if not as_user.has_perm('geyser.publish_%s' % publishable_key):
+            
+            if not as_user.has_perm('geyser.publish_any_%s' % publishable_str):
+                if not as_user.has_perm('geyser.publish_%s' % publishable_str):
                     return None
+                
+                pubh_filters = {
+                    'content_type': publishable_type,
+                    'object_id': publishable.id,
+                    'user': as_user
+                }
                 if not PublishablePermission.objects.filter(
-                        content_type=publishable_type,
-                        object_id=publishable.id,
-                        user=as_user).exists():
+                        **pubh_filters).exists():
                     return None
         
         allowed_publications = []
-        for app_model in settings.GEYSER_PUBLISHABLES[publishable_key]['publish_to']:
+        to_types = settings.GEYSER_PUBLISHABLES[publishable_str]['publish_to']
+        for app_model in to_types:
             (publication_app, publication_model) = app_model.split('.')
             publication_type = ContentType.objects.get(
                 app_label=publication_app, model=publication_model)
             Publication = publication_type.model_class()
-            publication_key = '%s.%s' % (publication_app, publication_model)
+            publication_str = '%s.%s' % (publication_app, publication_model)
+            pub_pair = (publishable_str, publication_str)
             
-            if as_user and not as_user.is_superuser and not as_user.has_perm(
-                    'geyser.publish_%s_to_any_%s' % (publishable_key, publication_key)):
-                if as_user.has_perm('geyser.publish_%s_to_%s' %
-                        (publishable_key, publication_key)):
-                    publication_perms = PublicationPermission.objects.filter(
-                        content_type=publication_type,
-                        publishable_type=publishable_type,
-                        user=as_user)
-                    allowed_of_type = Publication.objects.filter(
-                        id__in=publication_perms.values_list('object_id', flat=True))
-                    allowed_publications.extend(allowed_of_type)
+            to_any_perm = 'geyser.publish_%s_to_any_%s' % pub_pair
+            if as_user and not as_user.is_superuser and \
+                    not as_user.has_perm(to_any_perm):
+                to_perm = 'geyser.publish_%s_to_%s' % pub_pair
+                
+                if as_user.has_perm(to_perm):
+                    pubc_filters = {
+                        'content_type': publication_type,
+                        'publishable_type': publishable_type,
+                        'user': as_user
+                    }
+                    allowed_ids = PublicationPermission.objects.filter(
+                        **pubc_filters).values_list('object_id', flat=True)
+                    allowed = Publication.objects.filter(id__in=allowed_ids)
+                    allowed_publications.extend(allowed)
             else:
                 allowed_publications.extend(Publication.objects.all())
         
@@ -179,8 +194,8 @@ class DropletManager(Manager):
                 filter_from = [filter_from]
             return filter(lambda p: p in allowed_publications, filter_from)
     
-    
-    def publish(self, publishable, publications=None, as_user=None, **droplet_dict):
+    def publish(self, publishable, publications=None, as_user=None,
+            **droplet_dict):
         """
         Publishes the given publishable object.
         
@@ -204,7 +219,8 @@ class DropletManager(Manager):
         
         """
         
-        publications = self.get_allowed_publications(publishable, as_user, publications)
+        publications = self.get_allowed_publications(
+            publishable, as_user, publications)
         droplet_dict['publishable'] = publishable
         if as_user and 'published_by' not in droplet_dict:
             droplet_dict['published_by'] = as_user
@@ -216,7 +232,6 @@ class DropletManager(Manager):
                 droplets.append(self.create(**droplet_dict))
         
         return droplets
-    
     
     def unpublish(self, publishable, publications=None, as_user=None):
         """
@@ -230,8 +245,10 @@ class DropletManager(Manager):
         
         """
         
-        publications = self.get_allowed_publications(publishable, as_user, publications)
-        droplets = self.get_list(publishable=publishable, publications=publications)
+        publications = self.get_allowed_publications(
+            publishable, as_user, publications)
+        droplets = self.get_list(publishable=publishable,
+            publications=publications)
         
         update_dict = {'is_newest': False, 'updated': datetime.now()}
         if as_user:
