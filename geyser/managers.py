@@ -40,8 +40,8 @@ class DropletManager(Manager):
         publishable_filters: Filters to apply to the publishable model(s).
             Only publishings of objects matching these filters will be
             returned.
-        include_old: Boolean indicating whether to include Droplets that have
-            been "unpublished". Default is False.
+        include_unpublished: Boolean indicating whether to include Droplets that have
+            been unpublished. Default is False.
         include_future: Boolean, whether to include Droplets with a publish
             date in the future. Default is False.
         
@@ -56,7 +56,7 @@ class DropletManager(Manager):
         year = kwargs.get('year')
         month = kwargs.get('month')
         day = kwargs.get('day')
-        include_old = kwargs.get('include_old', False)
+        include_unpublished = kwargs.get('include_unpublished', False)
         include_future = kwargs.get('include_future', False)
         
         if publishable:
@@ -115,8 +115,8 @@ class DropletManager(Manager):
             queries.append(Q(published__month=month))
         if day:
             queries.append(Q(published__day=day))
-        if not include_old:
-            filters['is_newest'] = True
+        if not include_unpublished:
+            filters['is_current'] = True
         if not include_future:
             filters['published__lte'] = datetime.now()
         
@@ -237,7 +237,7 @@ class DropletManager(Manager):
         """
         Un-publishes the given publishable.
         
-        Sets the is_newest flag to False so that (by default) queries do not
+        Sets the is_current flag to False so that (by default) queries do not
         find these droplets anymore.
         
         publications and as_user work exactly as they do for publish(),
@@ -250,7 +250,7 @@ class DropletManager(Manager):
         droplets = self.get_list(publishable=publishable,
             publications=publications)
         
-        update_dict = {'is_newest': False, 'updated': datetime.now()}
+        update_dict = {'is_current': False, 'updated': datetime.now()}
         if as_user:
             update_dict['updated_by'] = as_user
         

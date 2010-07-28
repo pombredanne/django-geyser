@@ -20,7 +20,22 @@ if 'south' in settings.INSTALLED_APPS:
 
 
 class Droplet(models.Model):
-    """An individual publishing of an object somewhere."""
+    """
+    An individual publishing of an object somewhere.
+    
+    Attributes:
+    publishable: The object which is published.
+    publication: The object which the publishable in published to.
+    first: The Droplet corresponding to the first time the publishable was
+        published. Can be self.
+    is_current: Whether this publishing is current (has not been unpublished).
+    published: The datetime that this Droplet was created.
+    update: The datetime that this Droplet was updated (probably means it was
+        unpublished).
+    published_by: The User who created this Droplet.
+    updated_by: The User who updated this Droplet (likely unpublished).
+    
+    """
     
     id = BigAutoField(primary_key=True)
     first = models.ForeignKey('self', null=True, editable=False)
@@ -37,7 +52,7 @@ class Droplet(models.Model):
     publication = generic.GenericForeignKey(
         'publication_type', 'publication_id')
     
-    is_newest = models.BooleanField(default=True, editable=False)
+    is_current = models.BooleanField(default=True, editable=False)
     published = models.DateTimeField(default=datetime.now, editable=False)
     updated = models.DateTimeField(auto_now=True, editable=False)
     
@@ -100,15 +115,15 @@ def add_self_first(sender, **kwargs):
 post_save.connect(add_self_first, sender=Droplet)
 
 
-def remove_previous_newest(sender, **kwargs):
+def unpublish_previous(sender, **kwargs):
     instance = kwargs['instance']
     current_list = sender.objects.get_list(
         publishable=instance.publishable,
         publications=instance.publication
     )
     current_list.update(
-        is_newest=False,
+        is_current=False,
         updated=datetime.now()
     )
 
-pre_save.connect(remove_previous_newest, sender=Droplet)
+pre_save.connect(unpublish_previous, sender=Droplet)

@@ -24,7 +24,7 @@ class ManagerGetListTest(GeyserTestCase):
         self.t1b_t2a = Droplet.objects.get(pk=2)
         self.t1a_t3a = Droplet.objects.get(pk=3)
         self.t2a_t3a = Droplet.objects.get(pk=4)
-        self.t2a_t3b_old = Droplet.objects.get(pk=5)
+        self.t2a_t3b_unpublished = Droplet.objects.get(pk=5)
         self.t2a_t3b = Droplet.objects.get(pk=6)
         self.t2a_t3b_future = Droplet.objects.get(pk=7)
     
@@ -90,13 +90,13 @@ class ManagerGetListTest(GeyserTestCase):
         self.assertTrue(self.t1a_t2a not in year_2010_filter)
         self.assertEqual(len(year_2010_filter), 3)
         
-        #by month include old
-        month_06_kwarg_old = Droplet.objects.get_list(month=6, include_old=True)
-        self.assertTrue(self.t2a_t3b_old in month_06_kwarg_old)
-        self.assertEqual(len(month_06_kwarg_old), 4)
-        month_06_filter_old = Droplet.objects.get_list(filters={'published__month': 6}, include_old=True)
-        self.assertTrue(self.t2a_t3b_old in month_06_filter_old)
-        self.assertEqual(len(month_06_filter_old), 4)
+        #by month include unpublished
+        month_06_kwarg_unpublished = Droplet.objects.get_list(month=6, include_unpublished=True)
+        self.assertTrue(self.t2a_t3b_unpublished in month_06_kwarg_unpublished)
+        self.assertEqual(len(month_06_kwarg_unpublished), 4)
+        month_06_filter_unpublished = Droplet.objects.get_list(filters={'published__month': 6}, include_unpublished=True)
+        self.assertTrue(self.t2a_t3b_unpublished in month_06_filter_unpublished)
+        self.assertEqual(len(month_06_filter_unpublished), 4)
         
         #include future
         month_06_future = Droplet.objects.get_list(filters={'published__month': 6}, include_future=True)
@@ -298,7 +298,7 @@ class ManagerUnpublishTest(GeyserTestCase):
         self.t1a_t2a = Droplet.objects.get(pk=1)
         all_droplets = Droplet.objects.all()
         self.assertTrue(self.t1a_t2a in all_droplets)
-        self.assertFalse(self.t1a_t2a.is_newest)
+        self.assertFalse(self.t1a_t2a.is_current)
         list_droplets = Droplet.objects.get_list()
         self.assertFalse(any(d.publication == self.t2a and d.publishable == self.t1a for d in list_droplets))
         self.assertNotEqual(self.t1a_t2a.updated, t1a_t2a_updated)

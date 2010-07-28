@@ -24,16 +24,16 @@ class ModelTest(GeyserTestCase):
         )
         droplet1.save()
         droplet1_updated = droplet1.updated
-        self.assertTrue(droplet1.is_newest)
+        self.assertTrue(droplet1.is_current)
         droplet2 = Droplet(
             publishable=self.t1,
             publication=self.t2,
             published_by=self.user
         )
         droplet2.save()
-        self.assertTrue(droplet2.is_newest)
+        self.assertTrue(droplet2.is_current)
         droplet1 = Droplet.objects.get(pk=droplet1.pk)
-        self.assertFalse(droplet1.is_newest)
+        self.assertFalse(droplet1.is_current)
         self.assertNotEqual(droplet1_updated, droplet1.updated)
     
     def test_first_publish(self):

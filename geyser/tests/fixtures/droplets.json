@@ -7,7 +7,7 @@
             "publishable_id": 1,
             "publication_type": ["testapp", "testmodel2"],
             "publication_id": 1,
-            "is_newest": true,
+            "is_current": true,
             "published": "2009-09-28 15:44:33.705410",
             "published_by": 2,
             "updated_by": 2
@@ -21,7 +21,7 @@
             "publishable_id": 2,
             "publication_type": ["testapp", "testmodel2"],
             "publication_id": 1,
-            "is_newest": true,
+            "is_current": true,
             "published": "2010-05-28 15:44:33.705410",
             "published_by": 2,
             "updated_by": 2
@@ -35,7 +35,7 @@
             "publishable_id": 1,
             "publication_type": ["testapp", "testmodel3"],
             "publication_id": 1,
-            "is_newest": true,
+            "is_current": true,
             "published": "2010-06-05 15:44:33.705410",
             "published_by": 2,
             "updated_by": 2
@@ -49,7 +49,7 @@
             "publishable_id": 1,
             "publication_type": ["testapp", "testmodel3"],
             "publication_id": 1,
-            "is_newest": true,
+            "is_current": true,
             "published": "2010-06-27 15:44:33.705410",
             "published_by": 2,
             "updated_by": 2
@@ -63,7 +63,7 @@
             "publishable_id": 1,
             "publication_type": ["testapp", "testmodel3"],
             "publication_id": 2,
-            "is_newest": false,
+            "is_current": false,
             "published": "2010-06-28 15:44:33.705410",
             "published_by": 2,
             "updated_by": 2
@@ -77,7 +77,7 @@
             "publishable_id": 1,
             "publication_type": ["testapp", "testmodel3"],
             "publication_id": 2,
-            "is_newest": false,
+            "is_current": false,
             "published": "2010-06-28 15:45:33.705410",
             "published_by": 2,
             "updated_by": 2
@@ -91,7 +91,7 @@
             "publishable_id": 1,
             "publication_type": ["testapp", "testmodel3"],
             "publication_id": 2,
-            "is_newest": true,
+            "is_current": true,
             "published": "2112-06-28 15:45:33.705410",
             "published_by": 2,
             "updated_by": 2
