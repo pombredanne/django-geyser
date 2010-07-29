@@ -24,16 +24,18 @@ class Droplet(models.Model):
     An individual publishing of an object somewhere.
     
     Attributes:
-    publishable: The object which is published.
-    publication: The object which the publishable in published to.
-    first: The Droplet corresponding to the first time the publishable was
-        published. Can be self.
-    is_current: Whether this publishing is current (has not been unpublished).
-    published: The datetime that this Droplet was created.
-    update: The datetime that this Droplet was updated (probably means it was
-        unpublished).
-    published_by: The User who created this Droplet.
-    updated_by: The User who updated this Droplet (likely unpublished).
+    
+    * `publishable`: The object which is published.
+    * `publication`: The object which the publishable in published to.
+    * `first`: The `Droplet` corresponding to the first time the publishable
+      was published. Can be self.
+    * `is_current`: Whether this publishing is current (has not been
+      unpublished).
+    * `published`: The datetime that this `Droplet` was created.
+    * `update`: The datetime that this `Droplet` was updated (probably means
+      it was unpublished).
+    * `published_by`: The user who created this `Droplet`.
+    * `updated_by`: The user who updated this `Droplet` (likely unpublished).
     
     """
     

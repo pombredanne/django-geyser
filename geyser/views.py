@@ -11,34 +11,45 @@ class PublishObject(object):
     """
     A view used to publish the given model.
     
+    
     This class should be passed a model class when instantiated, which is the
     class of any objects that will published (a "publishable"). It also
-    accepts a keyword argument, template, which will be used when rendering
-    the response. The default template is 'geyser/publish.html'.
+    accepts a keyword argument, `template`, which will be used when rendering
+    the response. The default template is ``'geyser/publish.html'``.
+    
     
     Instances of this class are callable, requiring a request object and a
     primary key to be passed. The primary key is that of the object to be
     published. It returns a rendered response, using the specified template,
     including the following in the context:
-    object: The object to be published.
-    publication_formset: A formset containing a form for each publication to
-        which the object can be published. More details below.
+    
+    * `object`: The object to be published.
+    * `publication_formset`: A formset containing a form for each publication
+      to which the object can be published. More details below.
+    
     
     Each form in the publication_formset has the following fields:
-        type: Hidden, the id of the ContentType for the publication.
-        id: Hidden, the id of the publication object.
-        publish: Boolean, whether the publishable is currently published to
-        this publication.
-    Each form also has two extra attributes added, which can be helpful for
-        customizing the publish page:
-        publication_type: The ContentType instance which corresponds to the
-            publication.
-        publication: The publication object itself.
     
-    Typical usage would be something like the following line in urlpatterns:
+    * `type`: Hidden, the id of the `ContentType` for the publication.
+    * `id`: Hidden, the id of the publication object.
+    * `publish`: Boolean, whether the publishable is currently published to
+      this publication.
+    
+    
+    Each form also has two extra attributes added, which can be helpful for
+    customizing the publish page:
+    
+    * `form.publication_type`: The `ContentType` instance which corresponds to
+      the publication.
+    * `form.publication`: The publication object itself.
+    
+    
+    Typical usage would be something like the following line in urlpatterns::
+    
         (r'^posts/(\d+)/publish/$', PublishObject(BlogPost)),
-    Here, BlogPost is the Model class to be published, and the id of the post
-    to be published is captured by the regular expression.
+    
+    Here, `BlogPost` is the `Model` class to be published, and the id of the
+    post to be published is captured by the regular expression.
     
     """
     

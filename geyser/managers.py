@@ -17,33 +17,33 @@ class DropletManager(Manager):
     """
     
     def get_query_set(self):
-        """Returns a GenericQuerySet with related fields pre-selected."""
+        """Returns a `GenericQuerySet` with related fields pre-selected."""
         return GenericQuerySet(self.model, using=self.db) \
             .select_related('first').select_related_generic()
     
     def get_list(self, **kwargs):
         """
-        Returns a list of Droplet instances, allowing for special filters.
+        Returns a list of `Droplet` instances, allowing for special filters.
         
         Accepts the following filters as keyword arguments:
-        publishable: An instance of a publishable model. Returns publishings
-            of this object only.
-        publishable_models: One or more (in a list or tuple) publishable model
-            classes. Returns publishings of these models only. Overridden by
-            publishable if both are given.
-        publications: One or more (in a list or tuple) publication instances.
-            Only publishings to these objects will be returned.
-        year: Return only publications in the given year.
-        month: Similar to year. To get publishings in a specific month of a
-            specific year, pass both.
-        day: Similar to year and month.
-        publishable_filters: Filters to apply to the publishable model(s).
-            Only publishings of objects matching these filters will be
-            returned.
-        include_unpublished: Boolean indicating whether to include Droplets that have
-            been unpublished. Default is False.
-        include_future: Boolean, whether to include Droplets with a publish
-            date in the future. Default is False.
+        
+        * `publishable`: An instance of a publishable model. Returns
+          publishings of this object only.
+        * `publishable_models`: One or more (in a list or tuple) publishable
+          model classes. Returns publishings of these models only. Overridden
+          by `publishable` if both are given.
+        * `publications`: One or more (in a list or tuple) publication
+          instances. Only publishings to these objects will be returned.
+        * `year`: Return only publications in the given year.
+        * `month`: Similar to year. To get publishings in a specific month of
+          a specific year, pass both.
+        * `day`: Similar to year and month.
+        * `publishable_filters`: Filters to apply to the publishable model(s).
+          Only publishings of objects matching these filters will be returned.
+        * `include_unpublished`: Boolean indicating whether to include
+          `Droplet`s that have been unpublished. Default is `False`.
+        * `include_future`: Boolean, whether to include `Droplet`s with a
+          publish date in the future. Default is `False`.
         
         """
         
@@ -127,12 +127,12 @@ class DropletManager(Manager):
         Returns a list of publications to which the given publishable object
         can be published.
         
-        as_user, if given, specifies a user whose permissions should be
+        `as_user`, if given, specifies a user whose permissions should be
         considered when determining where the object can be published. If not
         given, the object will be considered allowed to publish to any related
-        publications from the GEYSER_PUBLISHABLES setting.
+        publications from the `GEYSER_PUBLISHABLES` setting.
         
-        filter_from, if given, specifies the "starting list" of publications
+        `filter_from`, if given, specifies the "starting list" of publications
         which will be filtered by settings and user permissions.
         
         """
@@ -201,21 +201,21 @@ class DropletManager(Manager):
         
         Where the object is published is determined by the publications and
         as_user keyword arguments (see below), and is filtered by the the
-        get_allowed_publications method.
+        `get_allowed_publications` method.
         
-        publications can be given as a list of publications to which the
+        `publications` can be given as a list of publications to which the
         object should be published. If omitted, the publishable is published
         to all publications available for it.
         
-        as_user specifies a user whose permissions should be taken into
+        `as_user` specifies a user whose permissions should be taken into
         account when publishing. The object will only be published to
         publications to which the user is allowed to publish it, and the
         published_by attribute will be set to this user if not otherwise
         given. This can further restrict the list of publications, even if
         they are given explicitly.
         
-        Any additional keyword arguments are passed to the Droplet
-        constructor to specify explicit values for Droplet fields.
+        Any additional keyword arguments are passed to the `Droplet`
+        constructor to specify explicit values for `Droplet` fields.
         
         """
         
@@ -240,7 +240,7 @@ class DropletManager(Manager):
         Sets the is_current flag to False so that (by default) queries do not
         find these droplets anymore.
         
-        publications and as_user work exactly as they do for publish(),
+        `publications` and `as_user` work exactly as they do for `publish()`,
         restricting the list of objects which are affected.
         
         """
