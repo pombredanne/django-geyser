@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.db.models import Manager, Q
 from django.conf import settings
-from django.core.exceptions import FieldError
+from django.core.exceptions import FieldError, ImproperlyConfigured
 from django.contrib.contenttypes.models import ContentType
 
 from geyser.permission_models import PublishablePermission, PublicationPermission
@@ -141,6 +141,9 @@ class DropletManager(Manager):
         publishable_type = ContentType.objects.get_for_model(Publishable)
         publishable_str = '%s.%s' % (
             publishable_type.app_label, publishable_type.model)
+        
+        if publishable_str not in settings.GEYSER_PUBLISHABLES:
+            raise ImproperlyConfigured('Publishable type must be in GEYSER_PUBLISHABLES.')
         
         if as_user and not as_user.is_superuser:
             if not as_user.has_perm('geyser.add_droplet'):

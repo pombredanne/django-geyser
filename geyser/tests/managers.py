@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError, ImproperlyConfigured
 
 from django.conf import settings
 from django.db import connection, reset_queries
@@ -195,6 +195,10 @@ class ManagerPermissionWithoutObjectTest(GeyserTestCase):
         self.assertTrue(self.t3a in allowed)
         self.assertTrue(self.t3b in allowed)
         self.assertEqual(len(allowed), 3)
+    
+    def test_get_allowed_not_in_settings(self):
+        user = User.objects.get(pk=2)
+        self.assertRaises(ImproperlyConfigured, Droplet.objects.get_allowed_publications, self.t3a, user)
 
 
 class ManagerPermissionWithObjectTest(GeyserTestCase):
