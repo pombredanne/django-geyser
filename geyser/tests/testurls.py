@@ -7,4 +7,5 @@ from geyser.views import PublishObject
 
 urlpatterns = patterns('',
     (r'^t1/(\d+)/$', PublishObject(TestModel1)),
+    (r'^t1d/(\d+)/$', PublishObject(TestModel1, with_date=True)),
 )

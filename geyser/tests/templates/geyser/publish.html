@@ -3,9 +3,20 @@
 {% block content %}
     <h2>Publishing {{ object_type_name|capfirst }} "{{ object }}"</h2>
     
-    {% if can_publish_somewhere %}
+    {% if publication_formset.forms %}
         <p>This {{ object_type_name }} will be published in the following places:</p>
-        {% include publish_form_template %}
+        <form method='POST'>
+            {{ publication_formset.management_form }}
+            
+            <table>
+            {% for form in publication_formset.forms %}
+                {{ form }}
+            {% endfor %}
+            
+            {{ datetime_form }}
+            </table>
+            
+        </form>
     {% else %}
         <p>You do not have permission to publish this {{ object_type_name }} anywhere.</p>
     {% endif %}

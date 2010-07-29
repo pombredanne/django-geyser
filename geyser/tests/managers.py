@@ -262,6 +262,11 @@ class ManagerPublishTest(GeyserTestCase):
         self.assertTrue(any(d.publication == self.t3a for d in droplets))
         self.assertTrue(any(d.publication == self.t3b for d in droplets))
         self.assertEqual(droplets[0].published_by, self.user)
+    
+    def test_publish_with_date(self):
+        Droplet.objects.publish(self.t1a, self.t2a, published=datetime(2010, 7, 1))
+        droplet = Droplet.objects.all()[0]
+        self.assertEqual(droplet.published, datetime(2010, 7, 1))
 
 
 class ManagerUniquenessTest(GeyserTestCase):

@@ -1,5 +1,6 @@
-from django.forms.formsets import BaseFormSet, Form
+from datetime import datetime
 
+from django.forms.formsets import BaseFormSet, Form
 from django.contrib.auth.models import User, Permission
 from django.contrib.contenttypes.models import ContentType
 
@@ -90,6 +91,71 @@ class ViewTest(GeyserTestCase):
         self.assertTrue(all(d.publishable == self.t1a for d in published))
         self.assertTrue(any(d.publication == self.t3a for d in published))
         self.assertEqual(len(published), 1)
+    
+    def test_publish_with_date(self):
+        self.client.login(username='user', password='')
+        
+        no_date_response = self.client.get('/t1/1/')
+        self.assertRaises(KeyError, lambda c: c['datetime_form'], no_date_response.context)
+        
+        get_response = self.client.get('/t1d/1/')
+        self.assertTrue(isinstance(get_response.context['datetime_form'], Form))
+        
+        form_dict = {
+            'form-TOTAL_FORMS': 2,
+            'form-INITIAL_FORMS': 2,
+            'form-0-publish': 'on',
+            'form-0-type': self.type3.id,
+            'form-0-id': self.t3a.id,
+            'form-1-type': self.type3.id,
+            'form-1-id': self.t3b.id,
+            'publish_datetime_0': '2010-07-01',
+            'publish_datetime_1': '0:00:00'
+        }
+        post_response = self.client.post('/t1d/1/', form_dict)
+        
+        droplet = Droplet.objects.get_list()[0]
+        self.assertEqual(droplet.published, datetime(2010, 7, 1))
+        self.assertFalse(post_response.context['datetime_form'].is_bound)
+    
+    def test_publish_with_date_blank(self):
+        self.client.login(username='user', password='')
+        
+        form_dict = {
+            'form-TOTAL_FORMS': 2,
+            'form-INITIAL_FORMS': 2,
+            'form-0-publish': 'on',
+            'form-0-type': self.type3.id,
+            'form-0-id': self.t3a.id,
+            'form-1-type': self.type3.id,
+            'form-1-id': self.t3b.id,
+            'publish_datetime_0': '',
+            'publish_datetime_1': ''
+        }
+        post_response = self.client.post('/t1d/1/', form_dict)
+        
+        droplet = Droplet.objects.get_list()[0]
+        self.assertFalse(post_response.context['datetime_form'].is_bound)
+    
+    def test_publish_with_date_invalid(self):
+        self.client.login(username='user', password='')
+        
+        form_dict = {
+            'form-TOTAL_FORMS': 2,
+            'form-INITIAL_FORMS': 2,
+            'form-0-publish': 'on',
+            'form-0-type': self.type3.id,
+            'form-0-id': self.t3a.id,
+            'form-1-type': self.type3.id,
+            'form-1-id': self.t3b.id,
+            'publish_datetime_0': 'eee',
+            'publish_datetime_1': 'a'
+        }
+        post_response = self.client.post('/t1d/1/', form_dict)
+        
+        self.assertEqual(len(Droplet.objects.get_list()), 0)
+        self.assertTrue(post_response.context['datetime_form'].is_bound)
+        self.assertFalse(post_response.context['datetime_form'].is_valid())
     
     def test_unpublish(self):
         droplet = Droplet.objects.publish(self.t1a, self.t3a, self.user)[0]
