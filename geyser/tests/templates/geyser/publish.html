@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Publishing {{ object_type_name|capfirst }} "{{ object }}"</h2>
+    <h2>Publishing "{{ object }}"</h2>
     
     {% if publication_formset.forms %}
-        <p>This {{ object_type_name }} will be published in the following places:</p>
+        <p>This object will be published in the following places:</p>
         <form method='POST'>
             {{ publication_formset.management_form }}
             
@@ -18,6 +18,6 @@
             
         </form>
     {% else %}
-        <p>You do not have permission to publish this {{ object_type_name }} anywhere.</p>
+        <p>You do not have permission to publish "{{ object }}" anywhere.</p>
     {% endif %}
 {% endblock %}
