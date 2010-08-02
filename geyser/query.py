@@ -11,7 +11,7 @@ class GenericQuerySet(QuerySet):
     while providing the benefits of bulk queries for generically related
     objects. It waits until it is evaluated to retrieve the related objects.
     This retrieval does cause the entire queryset to be cached, which could
-    cause performance issues if the queryset is not sliced.
+    cause performance issues if the queryset is large.
     
     The `iterator()` method behaves as it does in a normal `QuerySet`, thus
     bypassing the caching of related objects entirely.
@@ -107,7 +107,7 @@ class GenericQuerySet(QuerySet):
             return super(GenericQuerySet, self).__iter__()
     
     def __contains__(self, item):
-        # always fill the cache completely if select_generic_related was called
+        # always fill the cache completely if select_related_generic was called
         if self._model_generic_fields and self._result_cache is None:
             iter(self)
             return item in self._result_cache
