@@ -90,7 +90,8 @@ class Droplet(models.Model):
                 published__day=self.published.day,
                 first=models.F('pk') # only worry about "canonical" publishing
             ).exists():
-                raise ValidationError('publishable.%s must be unique for date' % field_name)
+                raise ValidationError('%s.%s must be unique for date' %
+                    (self.publishable_type.model, field_name))
 
 
 def add_first(sender, **kwargs):

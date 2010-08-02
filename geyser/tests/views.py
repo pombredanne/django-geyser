@@ -9,7 +9,7 @@ from geyser.tests.base import GeyserTestCase
 from geyser.tests.testapp.models import TestModel1, TestModel2, TestModel3
 
 
-class ViewTest(GeyserTestCase):
+class PublishViewTest(GeyserTestCase):
     fixtures = ['users.json', 'objects.json', 'permissions.json']
     urls = 'geyser.tests.testurls'
     
@@ -35,10 +35,11 @@ class ViewTest(GeyserTestCase):
         self.assertEqual(t1a_response.status_code, 200)
         self.assertEqual(t1a_response.context['object'], self.t1a)
         self.assertTrue(isinstance(t1a_response.context['publication_formset'], BaseFormSet))
-        
         forms = t1a_response.context['publication_formset'].forms
         self.assertEqual(len(forms), 2)
         self.assertTrue(all([isinstance(form, Form) for form in forms]))
+        self.assertFalse(t1a_response.context['publish_error'])
+        
         self.assertEqual(forms[0].initial['id'], 1)
         self.assertEqual(forms[0].initial['type'], self.type3.id)
         self.assertEqual(forms[1].initial['id'], 2)
@@ -67,13 +68,13 @@ class ViewTest(GeyserTestCase):
             'form-1-id': self.t3b.id
         }
         t1a_response = self.client.post('/t1/1/', form_dict)
-        
         self.assertEqual(t1a_response.status_code, 200)
         self.assertEqual(t1a_response.context['object'], self.t1a)
         self.assertTrue(isinstance(t1a_response.context['publication_formset'], BaseFormSet))
         forms = t1a_response.context['publication_formset'].forms
         self.assertEqual(len(forms), 2)
         self.assertTrue(all([isinstance(form, Form) for form in forms]))
+        self.assertFalse(t1a_response.context['publish_error'])
         
         self.assertEqual(forms[0].cleaned_data['id'], 1)
         self.assertEqual(forms[0].cleaned_data['type'], self.type3.id)
@@ -199,4 +200,34 @@ class ViewTest(GeyserTestCase):
         self.assertEqual(droplet.updated_by, self.user)
 
 
-__all__ = ('ViewTest',)
+class PublishViewUniquenessTest(GeyserTestCase):
+    fixtures = ['users.json']
+    urls = 'geyser.tests.testurls'
+    
+    def setUp(self):
+        self.user = User.objects.get(pk=8)
+        self.t2a = TestModel2.objects.create(name='an object')
+        self.t2b = TestModel2.objects.create(name='an object')
+        self.type3 = ContentType.objects.get_for_model(TestModel3)
+        self.t3 = TestModel3.objects.create(name='t3 object')
+    
+    def test_first_publish(self):
+        da = Droplet.objects.publish(publishable=self.t2a)
+        
+        self.client.login(username='2to3user', password='')
+        form_dict = {
+            'form-TOTAL_FORMS': 1,
+            'form-INITIAL_FORMS': 1,
+            'form-0-publish': 'on',
+            'form-0-type': self.type3.id,
+            'form-0-id': self.t3.id,
+            'publish_datetime_0': '',
+            'publish_datetime_1': ''
+        }
+        post_response = self.client.post('/t2d/%s/' % self.t2b.id, form_dict)
+        self.assertEqual(len(Droplet.objects.get_list()), 1)
+        self.assertTrue(post_response.context['datetime_form'].is_bound)
+        self.assertTrue(post_response.context['publish_error'])
+
+
+__all__ = ('PublishViewTest', 'PublishViewUniquenessTest')
