@@ -16,12 +16,7 @@
             "username": "user",
             "password": "sha1$8f49e$e0cf207e2c7d718922c40f8b358e725a0edf7610",
             "is_active": true,
-            "is_superuser": false,
-            "user_permissions": [
-                ["add_droplet", "geyser", "droplet"],
-                ["publish_any_testapp.testmodel1", "geyser", "droplet"],
-                ["publish_testapp.testmodel1_to_any_testapp.testmodel3", "geyser", "droplet"]
-            ]
+            "is_superuser": false
         }
     },
     {
@@ -31,14 +26,7 @@
             "username": "permtest3",
             "password": "sha1$8f49e$e0cf207e2c7d718922c40f8b358e725a0edf7610",
             "is_active": false,
-            "is_superuser": false,
-            "user_permissions": [
-                ["add_droplet", "geyser", "droplet"],
-                ["publish_testapp.testmodel1", "geyser", "droplet"],
-                ["publish_any_testapp.testmodel1", "geyser", "droplet"],
-                ["publish_testapp.testmodel1_to_testapp.testmodel3", "geyser", "droplet"],
-                ["publish_testapp.testmodel1_to_any_testapp.testmodel3", "geyser", "droplet"]
-            ]
+            "is_superuser": false
         }
     },
     {
@@ -48,10 +36,7 @@
             "username": "permtest4",
             "password": "sha1$8f49e$e0cf207e2c7d718922c40f8b358e725a0edf7610",
             "is_active": true,
-            "is_superuser": false,
-            "user_permissions": [
-                ["add_droplet", "geyser", "droplet"]
-            ]
+            "is_superuser": false
         }
     },
     {
@@ -61,13 +46,7 @@
             "username": "permtest5",
             "password": "sha1$8f49e$e0cf207e2c7d718922c40f8b358e725a0edf7610",
             "is_active": true,
-            "is_superuser": false,
-            "user_permissions": [
-                ["publish_testapp.testmodel1", "geyser", "droplet"],
-                ["publish_any_testapp.testmodel1", "geyser", "droplet"],
-                ["publish_testapp.testmodel1_to_testapp.testmodel3", "geyser", "droplet"],
-                ["publish_testapp.testmodel1_to_any_testapp.testmodel3", "geyser", "droplet"]
-            ]
+            "is_superuser": false
         }
     },
     {
@@ -77,12 +56,7 @@
             "username": "permtest6",
             "password": "sha1$8f49e$e0cf207e2c7d718922c40f8b358e725a0edf7610",
             "is_active": true,
-            "is_superuser": false,
-            "user_permissions": [
-                ["add_droplet", "geyser", "droplet"],
-                ["publish_testapp.testmodel1", "geyser", "droplet"],
-                ["publish_testapp.testmodel1_to_any_testapp.testmodel3", "geyser", "droplet"]
-            ]
+            "is_superuser": false
         }
     },
     {
@@ -92,12 +66,7 @@
             "username": "permtest7",
             "password": "sha1$8f49e$e0cf207e2c7d718922c40f8b358e725a0edf7610",
             "is_active": true,
-            "is_superuser": false,
-            "user_permissions": [
-                ["add_droplet", "geyser", "droplet"],
-                ["publish_any_testapp.testmodel1", "geyser", "droplet"],
-                ["publish_testapp.testmodel1_to_testapp.testmodel3", "geyser", "droplet"]
-            ]
+            "is_superuser": false
         }
     },
     {
@@ -107,12 +76,27 @@
             "username": "2to3user",
             "password": "sha1$8f49e$e0cf207e2c7d718922c40f8b358e725a0edf7610",
             "is_active": true,
-            "is_superuser": false,
-            "user_permissions": [
-                ["add_droplet", "geyser", "droplet"],
-                ["publish_any_testapp.testmodel2", "geyser", "droplet"],
-                ["publish_testapp.testmodel2_to_any_testapp.testmodel3", "geyser", "droplet"]
-            ]
+            "is_superuser": false
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 9,
+        "fields": {
+            "username": "permtest9",
+            "password": "sha1$8f49e$e0cf207e2c7d718922c40f8b358e725a0edf7610",
+            "is_active": true,
+            "is_superuser": false
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 10,
+        "fields": {
+            "username": "permtest10",
+            "password": "sha1$8f49e$e0cf207e2c7d718922c40f8b358e725a0edf7610",
+            "is_active": true,
+            "is_superuser": false
         }
     }
 ]

@@ -147,8 +147,8 @@ class ManagerSelectRelatedTest(GeyserTestCase):
         self.assertEqual(len(connection.queries), query_count)
 
 
-class ManagerPermissionWithoutObjectTest(GeyserTestCase):
-    fixtures = ['users.json', 'objects.json']
+class ManagerPermissionsTest(GeyserTestCase):
+    fixtures = ['users.json', 'objects.json', 'permissions.json']
     
     def setUp(self):        
         self.t1a = TestModel1.objects.get(pk=1)
@@ -173,11 +173,6 @@ class ManagerPermissionWithoutObjectTest(GeyserTestCase):
         allowed = Droplet.objects.get_allowed_publications(self.t1a, user)
         self.assertEqual(allowed, None)
     
-    def test_get_allowed_without_add(self):
-        user = User.objects.get(pk=5)
-        allowed = Droplet.objects.get_allowed_publications(self.t1a, user)
-        self.assertEqual(allowed, None)
-    
     def test_get_allowed_without_publishable_object(self):
         user = User.objects.get(pk=6)
         allowed = Droplet.objects.get_allowed_publications(self.t1a, user)
@@ -199,26 +194,16 @@ class ManagerPermissionWithoutObjectTest(GeyserTestCase):
     def test_get_allowed_not_in_settings(self):
         user = User.objects.get(pk=2)
         self.assertRaises(ImproperlyConfigured, Droplet.objects.get_allowed_publications, self.t3a, user)
-
-
-class ManagerPermissionWithObjectTest(GeyserTestCase):
-    fixtures = ['users.json', 'objects.json', 'permissions.json']
-    
-    def setUp(self):        
-        self.t1a = TestModel1.objects.get(pk=1)
-        self.t2a = TestModel2.objects.get(pk=1)
-        self.t3a = TestModel3.objects.get(pk=1)
-        self.t3b = TestModel3.objects.get(pk=2)
     
     def test_get_allowed_with_publishable_object(self):
-        user = User.objects.get(pk=6)
+        user = User.objects.get(pk=9)
         allowed = Droplet.objects.get_allowed_publications(self.t1a, user)
         self.assertTrue(self.t3a in allowed)
         self.assertTrue(self.t3b in allowed)
         self.assertEqual(len(allowed), 2)
     
     def test_get_allowed_with_publication_object(self):
-        user = User.objects.get(pk=7)
+        user = User.objects.get(pk=10)
         allowed = Droplet.objects.get_allowed_publications(self.t1a, user)
         self.assertTrue(self.t3a in allowed)
         self.assertEqual(len(allowed), 1)
@@ -290,7 +275,7 @@ class ManagerUniquenessTest(GeyserTestCase):
 
 
 class ManagerUnpublishTest(GeyserTestCase):
-    fixtures = ['users.json', 'objects.json', 'permissions.json', 'droplets.json']
+    fixtures = ['users.json', 'objects.json', 'droplets.json', 'permissions.json']
     
     def setUp(self):        
         self.t1a = TestModel1.objects.get(pk=1)
@@ -322,4 +307,11 @@ class ManagerUnpublishTest(GeyserTestCase):
         self.assertEqual(self.t1a_t3a.updated_by, self.user)
 
 
-__all__ = ('ManagerGetListTest', 'ManagerSelectRelatedTest', 'ManagerPermissionWithoutObjectTest', 'ManagerPermissionWithObjectTest', 'ManagerPublishTest', 'ManagerUniquenessTest', 'ManagerUnpublishTest', )
+__all__ = (
+    'ManagerGetListTest',
+    'ManagerSelectRelatedTest',
+    'ManagerPermissionsTest',
+    'ManagerPublishTest',
+    'ManagerUniquenessTest',
+    'ManagerUnpublishTest',
+)

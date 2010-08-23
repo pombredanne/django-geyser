@@ -11,7 +11,6 @@ from django.contrib.auth.models import User
 
 from geyser.managers import DropletManager
 from geyser.bigint import BigAutoField
-from geyser.permission_models import *
 
 # Droplet uses a custom Field that South won't recognize unless this is added
 if 'south' in settings.INSTALLED_APPS:

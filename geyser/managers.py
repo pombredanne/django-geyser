@@ -1,11 +1,11 @@
 from datetime import datetime
 
-from django.db.models import Manager, Q
+from django.db.models import Manager, Q, get_model
 from django.conf import settings
 from django.core.exceptions import FieldError, ImproperlyConfigured
 from django.contrib.contenttypes.models import ContentType
 
-from geyser.permission_models import PublishablePermission, PublicationPermission
+from rubberstamp.models import AppPermission, AssignedPermission
 from geyser.query import GenericQuerySet
 
 
@@ -137,56 +137,27 @@ class DropletManager(Manager):
         
         """
         
-        Publishable = publishable.__class__
-        publishable_type = ContentType.objects.get_for_model(Publishable)
         publishable_str = '%s.%s' % (
-            publishable_type.app_label, publishable_type.model)
-        
+            publishable._meta.app_label, publishable._meta.module_name)        
         if publishable_str not in settings.GEYSER_PUBLISHABLES:
             raise ImproperlyConfigured('Publishable type must be in GEYSER_PUBLISHABLES.')
-        
-        if as_user and not as_user.is_superuser:
-            if not as_user.has_perm('geyser.add_droplet'):
-                return None
-            
-            if not as_user.has_perm('geyser.publish_any_%s' % publishable_str):
-                if not as_user.has_perm('geyser.publish_%s' % publishable_str):
-                    return None
-                
-                pubh_filters = {
-                    'content_type': publishable_type,
-                    'object_id': publishable.id,
-                    'user': as_user
-                }
-                if not PublishablePermission.objects.filter(
-                        **pubh_filters).exists():
-                    return None
+        if as_user and not as_user.is_superuser and \
+                not as_user.has_perm('geyser.publish.%s' % publishable_str) and \
+                not as_user.has_perm('geyser.publish', obj=publishable):
+            return None
         
         allowed_publications = []
         to_types = settings.GEYSER_PUBLISHABLES[publishable_str]['publish_to']
-        for app_model in to_types:
-            (publication_app, publication_model) = app_model.split('.')
-            publication_type = ContentType.objects.get(
-                app_label=publication_app, model=publication_model)
-            Publication = publication_type.model_class()
-            publication_str = '%s.%s' % (publication_app, publication_model)
-            pub_pair = (publishable_str, publication_str)
+        for publication_str in to_types:
+            (publication_app, publication_model) = publication_str.split('.')
+            Publication = get_model(publication_app, publication_model)
             
-            to_any_perm = 'geyser.publish_%s_to_any_%s' % pub_pair
+            to_perm = 'geyser.publish_to.%s' % publication_str
             if as_user and not as_user.is_superuser and \
-                    not as_user.has_perm(to_any_perm):
-                to_perm = 'geyser.publish_%s_to_%s' % pub_pair
-                
-                if as_user.has_perm(to_perm):
-                    pubc_filters = {
-                        'content_type': publication_type,
-                        'publishable_type': publishable_type,
-                        'user': as_user
-                    }
-                    allowed_ids = PublicationPermission.objects.filter(
-                        **pubc_filters).values_list('object_id', flat=True)
-                    allowed = Publication.objects.filter(id__in=allowed_ids)
-                    allowed_publications.extend(allowed)
+                    not as_user.has_perm(to_perm):                
+                allowed = AppPermission.objects.get_permission_targets(
+                    'geyser.publish_to.%s' % publication_str, as_user)
+                allowed_publications.extend(allowed)
             else:
                 allowed_publications.extend(Publication.objects.all())
         

@@ -201,7 +201,7 @@ class PublishViewTest(GeyserTestCase):
 
 
 class PublishViewUniquenessTest(GeyserTestCase):
-    fixtures = ['users.json']
+    fixtures = ['users.json', 'permissions.json']
     urls = 'geyser.tests.testurls'
     
     def setUp(self):

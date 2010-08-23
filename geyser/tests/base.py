@@ -34,7 +34,8 @@ class GeyserTestCase(TestCase):
                 'unique_for_date': ('name',),
             }
         }
-        import geyser.setup_perms
+        import rubberstamp
+        rubberstamp.autodiscover()
         
         super(TestCase, self)._pre_setup()
     

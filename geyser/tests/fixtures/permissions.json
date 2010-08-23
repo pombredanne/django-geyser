@@ -1,21 +1,130 @@
 [
     {
-        "model": "geyser.publishablepermission",
+        "model": "rubberstamp.assignedpermission",
         "pk": 1,
         "fields": {
-            "content_type": ["testapp", "testmodel1"],
-            "object_id": 1,
-            "user": 6
+            "permission": 1,
+            "user": 2,
+            "content_type": ["testapp", "testmodel1"]
         }
     },
     {
-        "model": "geyser.publicationpermission",
+        "model": "rubberstamp.assignedpermission",
         "pk": 2,
         "fields": {
-            "content_type": ["testapp", "testmodel3"],
-            "object_id": 1,
+            "permission": 2,
+            "user": 2,
+            "content_type": ["testapp", "testmodel3"]
+        }
+    },
+    {
+        "model": "rubberstamp.assignedpermission",
+        "pk": 3,
+        "fields": {
+            "permission": 1,
+            "user": 3,
+            "content_type": ["testapp", "testmodel1"]
+        }
+    },
+    {
+        "model": "rubberstamp.assignedpermission",
+        "pk": 4,
+        "fields": {
+            "permission": 2,
+            "user": 3,
+            "content_type": ["testapp", "testmodel3"]
+        }
+    },
+    {
+        "model": "rubberstamp.assignedpermission",
+        "pk": 5,
+        "fields": {
+            "permission": 1,
+            "user": 5,
+            "content_type": ["testapp", "testmodel1"]
+        }
+    },
+    {
+        "model": "rubberstamp.assignedpermission",
+        "pk": 6,
+        "fields": {
+            "permission": 2,
+            "user": 5,
+            "content_type": ["testapp", "testmodel3"]
+        }
+    },
+    {
+        "model": "rubberstamp.assignedpermission",
+        "pk": 7,
+        "fields": {
+            "permission": 2,
+            "user": 6,
+            "content_type": ["testapp", "testmodel3"]
+        }
+    },
+    {
+        "model": "rubberstamp.assignedpermission",
+        "pk": 8,
+        "fields": {
+            "permission": 1,
             "user": 7,
-            "publishable_type": ["testapp", "testmodel1"]
+            "content_type": ["testapp", "testmodel1"]
+        }
+    },
+    {
+        "model": "rubberstamp.assignedpermission",
+        "pk": 9,
+        "fields": {
+            "permission": 1,
+            "user": 8,
+            "content_type": ["testapp", "testmodel2"]
+        }
+    },
+    {
+        "model": "rubberstamp.assignedpermission",
+        "pk": 10,
+        "fields": {
+            "permission": 2,
+            "user": 8,
+            "content_type": ["testapp", "testmodel3"]
+        }
+    },
+    {
+        "model": "rubberstamp.assignedpermission",
+        "pk": 11,
+        "fields": {
+            "permission": 2,
+            "user": 9,
+            "content_type": ["testapp", "testmodel3"]
+        }
+    },
+    {
+        "model": "rubberstamp.assignedpermission",
+        "pk": 12,
+        "fields": {
+            "permission": 1,
+            "user": 10,
+            "content_type": ["testapp", "testmodel1"]
+        }
+    },
+    {
+        "model": "rubberstamp.assignedpermission",
+        "pk": 13,
+        "fields": {
+            "permission": 1,
+            "user": 9,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 1
+        }
+    },
+    {
+        "model": "rubberstamp.assignedpermission",
+        "pk": 14,
+        "fields": {
+            "permission": 2,
+            "user": 10,
+            "content_type": ["testapp", "testmodel3"],
+            "object_id": 1
         }
     }
 ]
