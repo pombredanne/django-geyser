@@ -1,7 +1,8 @@
 Publishing with per-object permissions. Support for feeds, aggregation, and
 "lifestream" concepts.
 
-Depends on the `auth` and `contenttypes` apps from `contrib`.
+Depends on the `auth` and `contenttypes` apps from `contrib`, and `jlecker`'s
+`django-rubberstamp <http://github.com/jlecker/django-rubberstamp>`_.
 
 
 Settings
