@@ -46,8 +46,3 @@ publishable model which should have a unique canonical publish date. The
 canonical date is the first date on which the object was published. If fields
 are given here, they will be checked for uniqueness when the publishable is
 first published, raising a `ValidationError` if the publishing fails.
-
-Geyser needs to set up permissions after models have been imported. The
-easiest way to make this happen is to add ``import geyser.setup_perms`` to
-the top of your URLconf. Near the ``admin.autodiscover()`` line is good, if
-you are using the admin.
