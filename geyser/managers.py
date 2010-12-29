@@ -138,7 +138,7 @@ class DropletManager(Manager):
         """
         
         publishable_str = '%s.%s' % (
-            publishable._meta.app_label, publishable._meta.module_name)        
+            publishable._meta.app_label, publishable._meta.module_name)
         if publishable_str not in settings.GEYSER_PUBLISHABLES:
             raise ImproperlyConfigured('Publishable type must be in GEYSER_PUBLISHABLES.')
         if as_user and not as_user.is_superuser and \

@@ -18,7 +18,7 @@ class PermissionTest(GeyserTestCase):
         self.t3_ct = ContentType.objects.get_for_model(TestModel3)
     
     def test_app_permissions(self):
-        perms = AppPermission.objects.all()
+        perms = AppPermission.objects.filter(app_label='geyser')
         self.assertEqual(len(perms), 2)
         
         publish_perm = perms.get(codename='publish')

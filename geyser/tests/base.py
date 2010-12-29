@@ -23,6 +23,10 @@ class GeyserTestCase(TestCase):
         loading.cache.loaded = False
         call_command('syncdb', interactive=False, verbosity=0)
         
+        self._original_auth_backends = settings.AUTHENTICATION_BACKENDS
+        settings.AUTHENTICATION_BACKENDS = list(settings.AUTHENTICATION_BACKENDS)
+        settings.AUTHENTICATION_BACKENDS.append('rubberstamp.backends.AppPermissionBackend')
+        
         self._original_geyser = getattr(settings, 'GEYSER_PUBLISHABLES', {})
         settings.GEYSER_PUBLISHABLES = {
             'testapp.testmodel1': {
@@ -42,6 +46,7 @@ class GeyserTestCase(TestCase):
     def _post_teardown(self):
         super(TestCase, self)._post_teardown()
         settings.GEYSER_PUBLISHABLES = self._original_geyser
+        settings.AUTHENTICATION_BACKENDS = self._original_auth_backends
         settings.INSTALLED_APPS = self._original_installed_apps
         settings.FIXTURE_DIRS = self._original_fixture_dirs
         settings.TEMPLATE_DIRS = self._original_template_dirs
