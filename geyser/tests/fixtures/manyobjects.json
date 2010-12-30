@@ -1920,20 +1920,17 @@
         }
     },
     {
-        "model": "testapp.testmodel2",
+        "model": "geyser.stream",
         "pk": 1,
-        "fields": {
-            "name": "test object 2-1"
-        }
+        "fields": {}
     },
     {
         "model": "geyser.droplet",
         "pk": 1,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 1,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 1,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -1941,10 +1938,9 @@
         "model": "geyser.droplet",
         "pk": 2,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 2,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 2,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -1952,10 +1948,9 @@
         "model": "geyser.droplet",
         "pk": 3,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 3,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 3,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -1963,10 +1958,9 @@
         "model": "geyser.droplet",
         "pk": 4,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 4,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 4,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -1974,10 +1968,9 @@
         "model": "geyser.droplet",
         "pk": 5,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 5,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 5,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -1985,10 +1978,9 @@
         "model": "geyser.droplet",
         "pk": 6,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 6,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 6,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -1996,10 +1988,9 @@
         "model": "geyser.droplet",
         "pk": 7,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 7,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 7,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2007,10 +1998,9 @@
         "model": "geyser.droplet",
         "pk": 8,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 8,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 8,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2018,10 +2008,9 @@
         "model": "geyser.droplet",
         "pk": 9,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 9,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 9,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2029,10 +2018,9 @@
         "model": "geyser.droplet",
         "pk": 10,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 10,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 10,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2040,10 +2028,9 @@
         "model": "geyser.droplet",
         "pk": 11,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 11,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 11,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2051,10 +2038,9 @@
         "model": "geyser.droplet",
         "pk": 12,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 12,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 12,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2062,10 +2048,9 @@
         "model": "geyser.droplet",
         "pk": 13,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 13,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 13,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2073,10 +2058,9 @@
         "model": "geyser.droplet",
         "pk": 14,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 14,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 14,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2084,10 +2068,9 @@
         "model": "geyser.droplet",
         "pk": 15,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 15,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 15,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2095,10 +2078,9 @@
         "model": "geyser.droplet",
         "pk": 16,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 16,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 16,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2106,10 +2088,9 @@
         "model": "geyser.droplet",
         "pk": 17,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 17,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 17,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2117,10 +2098,9 @@
         "model": "geyser.droplet",
         "pk": 18,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 18,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 18,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2128,10 +2108,9 @@
         "model": "geyser.droplet",
         "pk": 19,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 19,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 19,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2139,10 +2118,9 @@
         "model": "geyser.droplet",
         "pk": 20,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 20,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 20,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2150,10 +2128,9 @@
         "model": "geyser.droplet",
         "pk": 21,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 21,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 21,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2161,10 +2138,9 @@
         "model": "geyser.droplet",
         "pk": 22,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 22,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 22,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2172,10 +2148,9 @@
         "model": "geyser.droplet",
         "pk": 23,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 23,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 23,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2183,10 +2158,9 @@
         "model": "geyser.droplet",
         "pk": 24,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 24,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 24,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2194,10 +2168,9 @@
         "model": "geyser.droplet",
         "pk": 25,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 25,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 25,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2205,10 +2178,9 @@
         "model": "geyser.droplet",
         "pk": 26,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 26,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 26,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2216,10 +2188,9 @@
         "model": "geyser.droplet",
         "pk": 27,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 27,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 27,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2227,10 +2198,9 @@
         "model": "geyser.droplet",
         "pk": 28,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 28,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 28,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2238,10 +2208,9 @@
         "model": "geyser.droplet",
         "pk": 29,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 29,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 29,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2249,10 +2218,9 @@
         "model": "geyser.droplet",
         "pk": 30,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 30,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 30,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2260,10 +2228,9 @@
         "model": "geyser.droplet",
         "pk": 31,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 31,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 31,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2271,10 +2238,9 @@
         "model": "geyser.droplet",
         "pk": 32,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 32,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 32,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2282,10 +2248,9 @@
         "model": "geyser.droplet",
         "pk": 33,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 33,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 33,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2293,10 +2258,9 @@
         "model": "geyser.droplet",
         "pk": 34,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 34,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 34,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2304,10 +2268,9 @@
         "model": "geyser.droplet",
         "pk": 35,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 35,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 35,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2315,10 +2278,9 @@
         "model": "geyser.droplet",
         "pk": 36,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 36,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 36,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2326,10 +2288,9 @@
         "model": "geyser.droplet",
         "pk": 37,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 37,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 37,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2337,10 +2298,9 @@
         "model": "geyser.droplet",
         "pk": 38,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 38,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 38,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2348,10 +2308,9 @@
         "model": "geyser.droplet",
         "pk": 39,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 39,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 39,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2359,10 +2318,9 @@
         "model": "geyser.droplet",
         "pk": 40,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 40,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 40,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2370,10 +2328,9 @@
         "model": "geyser.droplet",
         "pk": 41,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 41,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 41,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2381,10 +2338,9 @@
         "model": "geyser.droplet",
         "pk": 42,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 42,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 42,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2392,10 +2348,9 @@
         "model": "geyser.droplet",
         "pk": 43,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 43,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 43,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2403,10 +2358,9 @@
         "model": "geyser.droplet",
         "pk": 44,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 44,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 44,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2414,10 +2368,9 @@
         "model": "geyser.droplet",
         "pk": 45,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 45,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 45,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2425,10 +2378,9 @@
         "model": "geyser.droplet",
         "pk": 46,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 46,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 46,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2436,10 +2388,9 @@
         "model": "geyser.droplet",
         "pk": 47,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 47,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 47,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2447,10 +2398,9 @@
         "model": "geyser.droplet",
         "pk": 48,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 48,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 48,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2458,10 +2408,9 @@
         "model": "geyser.droplet",
         "pk": 49,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 49,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 49,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2469,10 +2418,9 @@
         "model": "geyser.droplet",
         "pk": 50,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 50,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 50,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2480,10 +2428,9 @@
         "model": "geyser.droplet",
         "pk": 51,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 51,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 51,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2491,10 +2438,9 @@
         "model": "geyser.droplet",
         "pk": 52,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 52,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 52,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2502,10 +2448,9 @@
         "model": "geyser.droplet",
         "pk": 53,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 53,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 53,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2513,10 +2458,9 @@
         "model": "geyser.droplet",
         "pk": 54,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 54,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 54,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2524,10 +2468,9 @@
         "model": "geyser.droplet",
         "pk": 55,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 55,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 55,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2535,10 +2478,9 @@
         "model": "geyser.droplet",
         "pk": 56,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 56,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 56,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2546,10 +2488,9 @@
         "model": "geyser.droplet",
         "pk": 57,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 57,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 57,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2557,10 +2498,9 @@
         "model": "geyser.droplet",
         "pk": 58,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 58,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 58,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2568,10 +2508,9 @@
         "model": "geyser.droplet",
         "pk": 59,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 59,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 59,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2579,10 +2518,9 @@
         "model": "geyser.droplet",
         "pk": 60,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 60,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 60,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2590,10 +2528,9 @@
         "model": "geyser.droplet",
         "pk": 61,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 61,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 61,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2601,10 +2538,9 @@
         "model": "geyser.droplet",
         "pk": 62,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 62,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 62,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2612,10 +2548,9 @@
         "model": "geyser.droplet",
         "pk": 63,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 63,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 63,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2623,10 +2558,9 @@
         "model": "geyser.droplet",
         "pk": 64,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 64,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 64,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2634,10 +2568,9 @@
         "model": "geyser.droplet",
         "pk": 65,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 65,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 65,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2645,10 +2578,9 @@
         "model": "geyser.droplet",
         "pk": 66,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 66,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 66,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2656,10 +2588,9 @@
         "model": "geyser.droplet",
         "pk": 67,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 67,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 67,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2667,10 +2598,9 @@
         "model": "geyser.droplet",
         "pk": 68,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 68,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 68,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2678,10 +2608,9 @@
         "model": "geyser.droplet",
         "pk": 69,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 69,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 69,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2689,10 +2618,9 @@
         "model": "geyser.droplet",
         "pk": 70,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 70,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 70,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2700,10 +2628,9 @@
         "model": "geyser.droplet",
         "pk": 71,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 71,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 71,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2711,10 +2638,9 @@
         "model": "geyser.droplet",
         "pk": 72,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 72,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 72,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2722,10 +2648,9 @@
         "model": "geyser.droplet",
         "pk": 73,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 73,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 73,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2733,10 +2658,9 @@
         "model": "geyser.droplet",
         "pk": 74,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 74,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 74,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2744,10 +2668,9 @@
         "model": "geyser.droplet",
         "pk": 75,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 75,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 75,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2755,10 +2678,9 @@
         "model": "geyser.droplet",
         "pk": 76,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 76,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 76,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2766,10 +2688,9 @@
         "model": "geyser.droplet",
         "pk": 77,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 77,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 77,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2777,10 +2698,9 @@
         "model": "geyser.droplet",
         "pk": 78,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 78,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 78,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2788,10 +2708,9 @@
         "model": "geyser.droplet",
         "pk": 79,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 79,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 79,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2799,10 +2718,9 @@
         "model": "geyser.droplet",
         "pk": 80,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 80,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 80,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2810,10 +2728,9 @@
         "model": "geyser.droplet",
         "pk": 81,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 81,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 81,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2821,10 +2738,9 @@
         "model": "geyser.droplet",
         "pk": 82,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 82,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 82,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2832,10 +2748,9 @@
         "model": "geyser.droplet",
         "pk": 83,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 83,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 83,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2843,10 +2758,9 @@
         "model": "geyser.droplet",
         "pk": 84,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 84,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 84,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2854,10 +2768,9 @@
         "model": "geyser.droplet",
         "pk": 85,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 85,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 85,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2865,10 +2778,9 @@
         "model": "geyser.droplet",
         "pk": 86,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 86,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 86,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2876,10 +2788,9 @@
         "model": "geyser.droplet",
         "pk": 87,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 87,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 87,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2887,10 +2798,9 @@
         "model": "geyser.droplet",
         "pk": 88,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 88,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 88,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2898,10 +2808,9 @@
         "model": "geyser.droplet",
         "pk": 89,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 89,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 89,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2909,10 +2818,9 @@
         "model": "geyser.droplet",
         "pk": 90,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 90,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 90,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2920,10 +2828,9 @@
         "model": "geyser.droplet",
         "pk": 91,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 91,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 91,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2931,10 +2838,9 @@
         "model": "geyser.droplet",
         "pk": 92,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 92,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 92,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2942,10 +2848,9 @@
         "model": "geyser.droplet",
         "pk": 93,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 93,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 93,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2953,10 +2858,9 @@
         "model": "geyser.droplet",
         "pk": 94,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 94,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 94,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2964,10 +2868,9 @@
         "model": "geyser.droplet",
         "pk": 95,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 95,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 95,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2975,10 +2878,9 @@
         "model": "geyser.droplet",
         "pk": 96,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 96,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 96,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2986,10 +2888,9 @@
         "model": "geyser.droplet",
         "pk": 97,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 97,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 97,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -2997,10 +2898,9 @@
         "model": "geyser.droplet",
         "pk": 98,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 98,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 98,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3008,10 +2908,9 @@
         "model": "geyser.droplet",
         "pk": 99,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 99,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 99,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3019,10 +2918,9 @@
         "model": "geyser.droplet",
         "pk": 100,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 100,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 100,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3030,10 +2928,9 @@
         "model": "geyser.droplet",
         "pk": 101,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 101,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 101,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3041,10 +2938,9 @@
         "model": "geyser.droplet",
         "pk": 102,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 102,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 102,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3052,10 +2948,9 @@
         "model": "geyser.droplet",
         "pk": 103,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 103,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 103,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3063,10 +2958,9 @@
         "model": "geyser.droplet",
         "pk": 104,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 104,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 104,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3074,10 +2968,9 @@
         "model": "geyser.droplet",
         "pk": 105,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 105,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 105,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3085,10 +2978,9 @@
         "model": "geyser.droplet",
         "pk": 106,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 106,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 106,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3096,10 +2988,9 @@
         "model": "geyser.droplet",
         "pk": 107,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 107,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 107,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3107,10 +2998,9 @@
         "model": "geyser.droplet",
         "pk": 108,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 108,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 108,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3118,10 +3008,9 @@
         "model": "geyser.droplet",
         "pk": 109,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 109,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 109,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3129,10 +3018,9 @@
         "model": "geyser.droplet",
         "pk": 110,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 110,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 110,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3140,10 +3028,9 @@
         "model": "geyser.droplet",
         "pk": 111,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 111,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 111,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3151,10 +3038,9 @@
         "model": "geyser.droplet",
         "pk": 112,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 112,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 112,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3162,10 +3048,9 @@
         "model": "geyser.droplet",
         "pk": 113,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 113,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 113,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3173,10 +3058,9 @@
         "model": "geyser.droplet",
         "pk": 114,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 114,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 114,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3184,10 +3068,9 @@
         "model": "geyser.droplet",
         "pk": 115,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 115,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 115,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3195,10 +3078,9 @@
         "model": "geyser.droplet",
         "pk": 116,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 116,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 116,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3206,10 +3088,9 @@
         "model": "geyser.droplet",
         "pk": 117,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 117,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 117,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3217,10 +3098,9 @@
         "model": "geyser.droplet",
         "pk": 118,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 118,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 118,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3228,10 +3108,9 @@
         "model": "geyser.droplet",
         "pk": 119,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 119,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 119,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3239,10 +3118,9 @@
         "model": "geyser.droplet",
         "pk": 120,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 120,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 120,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3250,10 +3128,9 @@
         "model": "geyser.droplet",
         "pk": 121,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 121,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 121,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3261,10 +3138,9 @@
         "model": "geyser.droplet",
         "pk": 122,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 122,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 122,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3272,10 +3148,9 @@
         "model": "geyser.droplet",
         "pk": 123,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 123,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 123,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3283,10 +3158,9 @@
         "model": "geyser.droplet",
         "pk": 124,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 124,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 124,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3294,10 +3168,9 @@
         "model": "geyser.droplet",
         "pk": 125,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 125,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 125,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3305,10 +3178,9 @@
         "model": "geyser.droplet",
         "pk": 126,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 126,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 126,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3316,10 +3188,9 @@
         "model": "geyser.droplet",
         "pk": 127,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 127,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 127,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3327,10 +3198,9 @@
         "model": "geyser.droplet",
         "pk": 128,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 128,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 128,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3338,10 +3208,9 @@
         "model": "geyser.droplet",
         "pk": 129,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 129,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 129,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3349,10 +3218,9 @@
         "model": "geyser.droplet",
         "pk": 130,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 130,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 130,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3360,10 +3228,9 @@
         "model": "geyser.droplet",
         "pk": 131,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 131,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 131,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3371,10 +3238,9 @@
         "model": "geyser.droplet",
         "pk": 132,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 132,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 132,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3382,10 +3248,9 @@
         "model": "geyser.droplet",
         "pk": 133,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 133,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 133,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3393,10 +3258,9 @@
         "model": "geyser.droplet",
         "pk": 134,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 134,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 134,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3404,10 +3268,9 @@
         "model": "geyser.droplet",
         "pk": 135,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 135,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 135,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3415,10 +3278,9 @@
         "model": "geyser.droplet",
         "pk": 136,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 136,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 136,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3426,10 +3288,9 @@
         "model": "geyser.droplet",
         "pk": 137,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 137,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 137,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3437,10 +3298,9 @@
         "model": "geyser.droplet",
         "pk": 138,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 138,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 138,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3448,10 +3308,9 @@
         "model": "geyser.droplet",
         "pk": 139,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 139,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 139,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3459,10 +3318,9 @@
         "model": "geyser.droplet",
         "pk": 140,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 140,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 140,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3470,10 +3328,9 @@
         "model": "geyser.droplet",
         "pk": 141,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 141,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 141,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3481,10 +3338,9 @@
         "model": "geyser.droplet",
         "pk": 142,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 142,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 142,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3492,10 +3348,9 @@
         "model": "geyser.droplet",
         "pk": 143,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 143,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 143,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3503,10 +3358,9 @@
         "model": "geyser.droplet",
         "pk": 144,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 144,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 144,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3514,10 +3368,9 @@
         "model": "geyser.droplet",
         "pk": 145,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 145,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 145,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3525,10 +3378,9 @@
         "model": "geyser.droplet",
         "pk": 146,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 146,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 146,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3536,10 +3388,9 @@
         "model": "geyser.droplet",
         "pk": 147,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 147,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 147,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3547,10 +3398,9 @@
         "model": "geyser.droplet",
         "pk": 148,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 148,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 148,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3558,10 +3408,9 @@
         "model": "geyser.droplet",
         "pk": 149,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 149,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 149,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3569,10 +3418,9 @@
         "model": "geyser.droplet",
         "pk": 150,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 150,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 150,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3580,10 +3428,9 @@
         "model": "geyser.droplet",
         "pk": 151,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 151,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 151,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3591,10 +3438,9 @@
         "model": "geyser.droplet",
         "pk": 152,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 152,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 152,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3602,10 +3448,9 @@
         "model": "geyser.droplet",
         "pk": 153,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 153,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 153,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3613,10 +3458,9 @@
         "model": "geyser.droplet",
         "pk": 154,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 154,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 154,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3624,10 +3468,9 @@
         "model": "geyser.droplet",
         "pk": 155,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 155,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 155,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3635,10 +3478,9 @@
         "model": "geyser.droplet",
         "pk": 156,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 156,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 156,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3646,10 +3488,9 @@
         "model": "geyser.droplet",
         "pk": 157,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 157,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 157,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3657,10 +3498,9 @@
         "model": "geyser.droplet",
         "pk": 158,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 158,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 158,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3668,10 +3508,9 @@
         "model": "geyser.droplet",
         "pk": 159,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 159,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 159,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3679,10 +3518,9 @@
         "model": "geyser.droplet",
         "pk": 160,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 160,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 160,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3690,10 +3528,9 @@
         "model": "geyser.droplet",
         "pk": 161,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 161,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 161,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3701,10 +3538,9 @@
         "model": "geyser.droplet",
         "pk": 162,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 162,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 162,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3712,10 +3548,9 @@
         "model": "geyser.droplet",
         "pk": 163,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 163,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 163,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3723,10 +3558,9 @@
         "model": "geyser.droplet",
         "pk": 164,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 164,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 164,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3734,10 +3568,9 @@
         "model": "geyser.droplet",
         "pk": 165,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 165,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 165,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3745,10 +3578,9 @@
         "model": "geyser.droplet",
         "pk": 166,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 166,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 166,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3756,10 +3588,9 @@
         "model": "geyser.droplet",
         "pk": 167,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 167,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 167,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3767,10 +3598,9 @@
         "model": "geyser.droplet",
         "pk": 168,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 168,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 168,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3778,10 +3608,9 @@
         "model": "geyser.droplet",
         "pk": 169,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 169,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 169,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3789,10 +3618,9 @@
         "model": "geyser.droplet",
         "pk": 170,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 170,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 170,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3800,10 +3628,9 @@
         "model": "geyser.droplet",
         "pk": 171,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 171,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 171,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3811,10 +3638,9 @@
         "model": "geyser.droplet",
         "pk": 172,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 172,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 172,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3822,10 +3648,9 @@
         "model": "geyser.droplet",
         "pk": 173,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 173,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 173,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3833,10 +3658,9 @@
         "model": "geyser.droplet",
         "pk": 174,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 174,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 174,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3844,10 +3668,9 @@
         "model": "geyser.droplet",
         "pk": 175,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 175,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 175,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3855,10 +3678,9 @@
         "model": "geyser.droplet",
         "pk": 176,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 176,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 176,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3866,10 +3688,9 @@
         "model": "geyser.droplet",
         "pk": 177,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 177,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 177,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3877,10 +3698,9 @@
         "model": "geyser.droplet",
         "pk": 178,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 178,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 178,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3888,10 +3708,9 @@
         "model": "geyser.droplet",
         "pk": 179,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 179,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 179,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3899,10 +3718,9 @@
         "model": "geyser.droplet",
         "pk": 180,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 180,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 180,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3910,10 +3728,9 @@
         "model": "geyser.droplet",
         "pk": 181,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 181,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 181,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3921,10 +3738,9 @@
         "model": "geyser.droplet",
         "pk": 182,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 182,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 182,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3932,10 +3748,9 @@
         "model": "geyser.droplet",
         "pk": 183,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 183,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 183,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3943,10 +3758,9 @@
         "model": "geyser.droplet",
         "pk": 184,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 184,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 184,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3954,10 +3768,9 @@
         "model": "geyser.droplet",
         "pk": 185,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 185,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 185,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3965,10 +3778,9 @@
         "model": "geyser.droplet",
         "pk": 186,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 186,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 186,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3976,10 +3788,9 @@
         "model": "geyser.droplet",
         "pk": 187,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 187,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 187,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3987,10 +3798,9 @@
         "model": "geyser.droplet",
         "pk": 188,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 188,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 188,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -3998,10 +3808,9 @@
         "model": "geyser.droplet",
         "pk": 189,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 189,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 189,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4009,10 +3818,9 @@
         "model": "geyser.droplet",
         "pk": 190,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 190,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 190,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4020,10 +3828,9 @@
         "model": "geyser.droplet",
         "pk": 191,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 191,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 191,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4031,10 +3838,9 @@
         "model": "geyser.droplet",
         "pk": 192,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 192,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 192,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4042,10 +3848,9 @@
         "model": "geyser.droplet",
         "pk": 193,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 193,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 193,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4053,10 +3858,9 @@
         "model": "geyser.droplet",
         "pk": 194,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 194,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 194,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4064,10 +3868,9 @@
         "model": "geyser.droplet",
         "pk": 195,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 195,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 195,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4075,10 +3878,9 @@
         "model": "geyser.droplet",
         "pk": 196,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 196,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 196,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4086,10 +3888,9 @@
         "model": "geyser.droplet",
         "pk": 197,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 197,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 197,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4097,10 +3898,9 @@
         "model": "geyser.droplet",
         "pk": 198,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 198,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 198,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4108,10 +3908,9 @@
         "model": "geyser.droplet",
         "pk": 199,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 199,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 199,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4119,10 +3918,9 @@
         "model": "geyser.droplet",
         "pk": 200,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 200,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 200,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4130,10 +3928,9 @@
         "model": "geyser.droplet",
         "pk": 201,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 201,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 201,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4141,10 +3938,9 @@
         "model": "geyser.droplet",
         "pk": 202,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 202,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 202,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4152,10 +3948,9 @@
         "model": "geyser.droplet",
         "pk": 203,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 203,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 203,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4163,10 +3958,9 @@
         "model": "geyser.droplet",
         "pk": 204,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 204,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 204,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4174,10 +3968,9 @@
         "model": "geyser.droplet",
         "pk": 205,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 205,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 205,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4185,10 +3978,9 @@
         "model": "geyser.droplet",
         "pk": 206,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 206,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 206,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4196,10 +3988,9 @@
         "model": "geyser.droplet",
         "pk": 207,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 207,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 207,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4207,10 +3998,9 @@
         "model": "geyser.droplet",
         "pk": 208,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 208,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 208,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4218,10 +4008,9 @@
         "model": "geyser.droplet",
         "pk": 209,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 209,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 209,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4229,10 +4018,9 @@
         "model": "geyser.droplet",
         "pk": 210,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 210,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 210,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4240,10 +4028,9 @@
         "model": "geyser.droplet",
         "pk": 211,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 211,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 211,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4251,10 +4038,9 @@
         "model": "geyser.droplet",
         "pk": 212,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 212,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 212,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4262,10 +4048,9 @@
         "model": "geyser.droplet",
         "pk": 213,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 213,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 213,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4273,10 +4058,9 @@
         "model": "geyser.droplet",
         "pk": 214,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 214,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 214,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4284,10 +4068,9 @@
         "model": "geyser.droplet",
         "pk": 215,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 215,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 215,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4295,10 +4078,9 @@
         "model": "geyser.droplet",
         "pk": 216,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 216,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 216,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4306,10 +4088,9 @@
         "model": "geyser.droplet",
         "pk": 217,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 217,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 217,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4317,10 +4098,9 @@
         "model": "geyser.droplet",
         "pk": 218,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 218,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 218,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4328,10 +4108,9 @@
         "model": "geyser.droplet",
         "pk": 219,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 219,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 219,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4339,10 +4118,9 @@
         "model": "geyser.droplet",
         "pk": 220,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 220,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 220,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4350,10 +4128,9 @@
         "model": "geyser.droplet",
         "pk": 221,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 221,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 221,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4361,10 +4138,9 @@
         "model": "geyser.droplet",
         "pk": 222,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 222,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 222,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4372,10 +4148,9 @@
         "model": "geyser.droplet",
         "pk": 223,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 223,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 223,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4383,10 +4158,9 @@
         "model": "geyser.droplet",
         "pk": 224,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 224,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 224,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4394,10 +4168,9 @@
         "model": "geyser.droplet",
         "pk": 225,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 225,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 225,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4405,10 +4178,9 @@
         "model": "geyser.droplet",
         "pk": 226,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 226,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 226,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4416,10 +4188,9 @@
         "model": "geyser.droplet",
         "pk": 227,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 227,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 227,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4427,10 +4198,9 @@
         "model": "geyser.droplet",
         "pk": 228,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 228,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 228,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4438,10 +4208,9 @@
         "model": "geyser.droplet",
         "pk": 229,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 229,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 229,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4449,10 +4218,9 @@
         "model": "geyser.droplet",
         "pk": 230,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 230,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 230,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4460,10 +4228,9 @@
         "model": "geyser.droplet",
         "pk": 231,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 231,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 231,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4471,10 +4238,9 @@
         "model": "geyser.droplet",
         "pk": 232,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 232,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 232,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4482,10 +4248,9 @@
         "model": "geyser.droplet",
         "pk": 233,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 233,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 233,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4493,10 +4258,9 @@
         "model": "geyser.droplet",
         "pk": 234,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 234,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 234,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4504,10 +4268,9 @@
         "model": "geyser.droplet",
         "pk": 235,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 235,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 235,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4515,10 +4278,9 @@
         "model": "geyser.droplet",
         "pk": 236,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 236,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 236,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4526,10 +4288,9 @@
         "model": "geyser.droplet",
         "pk": 237,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 237,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 237,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4537,10 +4298,9 @@
         "model": "geyser.droplet",
         "pk": 238,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 238,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 238,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4548,10 +4308,9 @@
         "model": "geyser.droplet",
         "pk": 239,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 239,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 239,
+            "stream": 1,
             "published_by": 2
         }
     },
@@ -4559,10 +4318,9 @@
         "model": "geyser.droplet",
         "pk": 240,
         "fields": {
-            "publishable_type": ["testapp", "testmodel1"],
-            "publishable_id": 240,
-            "publication_type": ["testapp", "testmodel2"],
-            "publication_id": 1,
+            "content_type": ["testapp", "testmodel1"],
+            "object_id": 240,
+            "stream": 1,
             "published_by": 2
         }
     }

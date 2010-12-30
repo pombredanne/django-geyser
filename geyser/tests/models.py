@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from geyser.tests.base import GeyserTestCase
 from geyser.tests.testapp.models import TestModel1, TestModel2
 
-from geyser.models import Droplet
+from geyser.models import Droplet, Stream
 
 
 class ModelTest(GeyserTestCase):
@@ -14,20 +14,20 @@ class ModelTest(GeyserTestCase):
         self.superuser = User.objects.get(pk=1)
         self.user = User.objects.get(pk=2)
         self.t1 = TestModel1.objects.get(pk=1)
-        self.t2 = TestModel2.objects.get(pk=1)
+        self.stream = Stream.objects.create()
     
     def test_remove_newest(self):
         droplet1 = Droplet(
-            publishable=self.t1,
-            publication=self.t2,
+            content_object=self.t1,
+            stream=self.stream,
             published_by=self.user
         )
         droplet1.save()
         droplet1_updated = droplet1.updated
         self.assertTrue(droplet1.is_current)
         droplet2 = Droplet(
-            publishable=self.t1,
-            publication=self.t2,
+            content_object=self.t1,
+            stream=self.stream,
             published_by=self.user
         )
         droplet2.save()
@@ -38,8 +38,8 @@ class ModelTest(GeyserTestCase):
     
     def test_first_publish(self):
         droplet1 = Droplet(
-            publishable=self.t1,
-            publication=self.t2,
+            content_object=self.t1,
+            stream=self.stream,
             published_by=self.user
         )
         droplet1.save()
@@ -49,8 +49,8 @@ class ModelTest(GeyserTestCase):
         self.assertEqual(droplet1.first, droplet1)
         
         droplet2 = Droplet(
-            publishable=self.t1,
-            publication=self.t2,
+            content_object=self.t1,
+            stream=self.stream,
             published_by=self.superuser
         )
         droplet2.save()

@@ -25,11 +25,6 @@ class PermissionTest(GeyserTestCase):
         publish_types = publish_perm.content_types.all()
         self.assertTrue(self.t1_ct in publish_types)
         self.assertTrue(self.t2_ct in publish_types)
-        
-        publish_to_perm = perms.get(codename='publish_to')
-        publish_to_types = publish_to_perm.content_types.all()
-        self.assertTrue(self.t2_ct in publish_to_types)
-        self.assertTrue(self.t3_ct in publish_to_types)
     
     def test_auto_permissions(self):
         t1a = TestModel1.objects.create(

@@ -30,13 +30,12 @@ class GeyserTestCase(TestCase):
         self._original_geyser = getattr(settings, 'GEYSER_PUBLISHABLES', {})
         settings.GEYSER_PUBLISHABLES = {
             'testapp.testmodel1': {
-                'publish_to': ('testapp.testmodel2', 'testapp.testmodel3'),
                 'auto_perms': ('owner',),
             },
             'testapp.testmodel2': {
-                'publish_to': ('testapp.testmodel3',),
                 'unique_for_date': ('name',),
-            }
+            },
+            'testapp.testmodel3': {},
         }
         import rubberstamp
         rubberstamp.autodiscover()

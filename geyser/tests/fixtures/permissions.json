@@ -14,7 +14,8 @@
         "fields": {
             "permission": ["geyser", "publish_to"],
             "user": 2,
-            "content_type": ["testapp", "testmodel3"]
+            "content_type": ["geyser", "stream"],
+            "object_id": 1
         }
     },
     {
@@ -32,39 +33,23 @@
         "fields": {
             "permission": ["geyser", "publish_to"],
             "user": 3,
-            "content_type": ["testapp", "testmodel3"]
+            "content_type": ["geyser", "stream"],
+            "object_id": 1
         }
     },
     {
         "model": "rubberstamp.assignedpermission",
         "pk": 5,
         "fields": {
-            "permission": ["geyser", "publish"],
-            "user": 5,
-            "content_type": ["testapp", "testmodel1"]
+            "permission": ["geyser", "publish_to"],
+            "user": 6,
+            "content_type": ["geyser", "stream"],
+            "object_id": 1
         }
     },
     {
         "model": "rubberstamp.assignedpermission",
         "pk": 6,
-        "fields": {
-            "permission": ["geyser", "publish_to"],
-            "user": 5,
-            "content_type": ["testapp", "testmodel3"]
-        }
-    },
-    {
-        "model": "rubberstamp.assignedpermission",
-        "pk": 7,
-        "fields": {
-            "permission": ["geyser", "publish_to"],
-            "user": 6,
-            "content_type": ["testapp", "testmodel3"]
-        }
-    },
-    {
-        "model": "rubberstamp.assignedpermission",
-        "pk": 8,
         "fields": {
             "permission": ["geyser", "publish"],
             "user": 7,
@@ -73,43 +58,7 @@
     },
     {
         "model": "rubberstamp.assignedpermission",
-        "pk": 9,
-        "fields": {
-            "permission": ["geyser", "publish"],
-            "user": 8,
-            "content_type": ["testapp", "testmodel2"]
-        }
-    },
-    {
-        "model": "rubberstamp.assignedpermission",
-        "pk": 10,
-        "fields": {
-            "permission": ["geyser", "publish_to"],
-            "user": 8,
-            "content_type": ["testapp", "testmodel3"]
-        }
-    },
-    {
-        "model": "rubberstamp.assignedpermission",
-        "pk": 11,
-        "fields": {
-            "permission": ["geyser", "publish_to"],
-            "user": 9,
-            "content_type": ["testapp", "testmodel3"]
-        }
-    },
-    {
-        "model": "rubberstamp.assignedpermission",
-        "pk": 12,
-        "fields": {
-            "permission": ["geyser", "publish"],
-            "user": 10,
-            "content_type": ["testapp", "testmodel1"]
-        }
-    },
-    {
-        "model": "rubberstamp.assignedpermission",
-        "pk": 13,
+        "pk": 7,
         "fields": {
             "permission": ["geyser", "publish"],
             "user": 9,
@@ -119,11 +68,11 @@
     },
     {
         "model": "rubberstamp.assignedpermission",
-        "pk": 14,
+        "pk": 8,
         "fields": {
             "permission": ["geyser", "publish_to"],
-            "user": 10,
-            "content_type": ["testapp", "testmodel3"],
+            "user": 9,
+            "content_type": ["geyser", "stream"],
             "object_id": 1
         }
     }

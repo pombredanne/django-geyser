@@ -1,0 +1,17 @@
+[
+    {
+        "model": "geyser.stream",
+        "pk": 1,
+        "fields": {}
+    },
+    {
+        "model": "geyser.stream",
+        "pk": 2,
+        "fields": {}
+    },
+    {
+        "model": "geyser.stream",
+        "pk": 3,
+        "fields": {}
+    }
+]

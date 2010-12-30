@@ -28,12 +28,5 @@
         "fields": {
             "name": "test object 3a"
         }
-    },
-    {
-        "model": "testapp.testmodel3",
-        "pk": 2,
-        "fields": {
-            "name": "test object 3b"
-        }
     }
 ]

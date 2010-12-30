@@ -10,7 +10,7 @@ from geyser.tests.testapp.models import TestModel1
 
 
 class QuerySetTestCase(GeyserTestCase):
-    fixtures = ['users.json', 'objects.json', 'droplets.json']
+    fixtures = ['users.json', 'objects.json', 'streams.json', 'droplets.json']
     
     def setUp(self):
         settings.DEBUG = True
@@ -19,7 +19,7 @@ class QuerySetTestCase(GeyserTestCase):
     def tearDown(self):
         settings.DEBUG = False
     
-    def test_lazy_evaluation(self):        
+    def test_lazy_evaluation(self):
         all = GenericQuerySet(Droplet).all()
         query_count = len(connection.queries)
         all.select_related_generic()
@@ -30,8 +30,7 @@ class QuerySetTestCase(GeyserTestCase):
         query_count = len(connection.queries)
         
         for droplet in all:
-            droplet.publishable
-            droplet.publication
+            droplet.content_object
         self.assertEqual(len(connection.queries), query_count)
     
     def test_membership_test(self):
@@ -40,7 +39,7 @@ class QuerySetTestCase(GeyserTestCase):
         self.assertTrue(a in all)
         
         query_count = len(connection.queries)
-        all[0].publishable
+        all[0].content_object
         self.assertEqual(len(connection.queries), query_count)
     
     def test_after_select_related(self):
@@ -50,8 +49,7 @@ class QuerySetTestCase(GeyserTestCase):
         self.assertEqual(query_count, NUM_RELATED_TYPES + 1)
         for droplet in all:
             droplet.first
-            droplet.publishable
-            droplet.publication
+            droplet.content_object
         self.assertEqual(len(connection.queries), query_count)
     
     def test_before_select_related(self):
@@ -61,8 +59,7 @@ class QuerySetTestCase(GeyserTestCase):
         self.assertEqual(query_count, NUM_RELATED_TYPES + 1)
         for droplet in all:
             droplet.first
-            droplet.publishable
-            droplet.publication
+            droplet.content_object
         self.assertEqual(len(connection.queries), query_count)
     
     def test_auto_content_type_select_related(self):
@@ -74,8 +71,7 @@ class QuerySetTestCase(GeyserTestCase):
         query_count = len(connection.queries)
         
         for droplet in all:
-            droplet.publishable
-            droplet.publication
+            droplet.content_object
         self.assertEqual(len(connection.queries), query_count)
 
 
@@ -99,20 +95,18 @@ class QuerySetTimeTestCase(GeyserTestCase):
         for i in range(10):
             all = GenericQuerySet(Droplet).all()
             for droplet in all:
-                droplet.publishable
-                droplet.publication
+                droplet.content_object
         normal_time = now() - start
         
         start = now()
         for i in range(10):
             all = GenericQuerySet(Droplet).select_related_generic()
             for droplet in all:
-                droplet.publishable
-                droplet.publication
+                droplet.content_object
         select_generic_time = now() - start
         
         ratio = select_generic_time / normal_time
-        self.assertTrue(ratio <= TARGET_RATIO)
+        self.assertTrue(ratio <= TARGET_RATIO, '%s > %s' % (ratio, TARGET_RATIO))
 
 
 __all__ = ('QuerySetTestCase', 'QuerySetTimeTestCase',)
