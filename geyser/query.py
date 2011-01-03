@@ -39,21 +39,20 @@ class GenericQuerySet(QuerySet):
         
         if self._model_generic_fields:
             return self
+        model_generic_fields = []
+        for field in self.model._meta.virtual_fields:
+            if isinstance(field, GenericForeignKey):
+                model_generic_fields.append(field)
+        if self.query.select_related is True:
+            # select_related() has been called with no fields
+            clone = self._clone()
         else:
-            model_generic_fields = []
-            for field in self.model._meta.virtual_fields:
-                if isinstance(field, GenericForeignKey):
-                    model_generic_fields.append(field)
-            if self.query.select_related is True:
-                clone = self._clone()
-                clone._model_generic_fields = model_generic_fields
-                return clone
-            else:
-                fields = self._select_related_fields + \
-                    [f.ct_field for f in model_generic_fields]
-                clone = super(GenericQuerySet, self).select_related(*fields)
-                clone._model_generic_fields = model_generic_fields
-                return clone
+            # add GFK content_type fields to select_related
+            fields = self._select_related_fields + \
+                [f.ct_field for f in model_generic_fields]
+            clone = super(GenericQuerySet, self).select_related(*fields)
+        clone._model_generic_fields = model_generic_fields
+        return clone
     
     def select_related(self, *fields, **kwargs):
         #  guarantees that content type fields for generic foreign keys are
@@ -68,54 +67,41 @@ class GenericQuerySet(QuerySet):
         return clone
     
     def __iter__(self):
-        if self._model_generic_fields:
-            # fill the cache completely before fetching related objects
-            if self._result_cache is None:
-                self._iter = self.iterator()
-                self._result_cache = []
-            if self._iter:
-                attach_related = True
-                try:
-                    while True:
-                        self._result_cache.append(self._iter.next())
-                except StopIteration:
-                    self._iter = None
-            else:
-                attach_related = False
-            
-            # this is the select_related_generic part
-            if attach_related:
-                ids_by_type = {}
-                for item in self._result_cache:
-                    # go through each field that is a GenericForeignKey
-                    for field in self._model_generic_fields:
-                        # get the content type of the related object
-                        content_type = getattr(item, field.ct_field)
-                        ids_for_type = ids_by_type.setdefault(content_type, set())
-                        # add the related object's id to the set
-                        ids_for_type.add(getattr(item, field.fk_field))
-                
-                objects_by_type = {}
-                for (type, ids) in ids_by_type.items():
-                    # fetch all the objects of this type by id
-                    objects_by_type[type] = type.model_class().objects.in_bulk(ids)
-                
-                for item in self._result_cache:
-                    for field in self._model_generic_fields:
-                        content_type = getattr(item, field.ct_field)
-                        object_id = getattr(item, field.fk_field)
-                        related_object = objects_by_type[content_type][object_id]
-                        # attach the related object to the GFK field
-                        setattr(item, field.cache_attr, related_object)
-            
-            return iter(self._result_cache)
-        else:
-            return super(GenericQuerySet, self).__iter__()
+        self._fill_for_generic()
+        return super(GenericQuerySet, self).__iter__()
     
     def __contains__(self, item):
-        # always fill the cache completely if select_related_generic was called
+        self._fill_for_generic()
+        return super(GenericQuerySet, self).__contains__(item)
+    
+    def _fill_for_generic(self):
+        # fill the cache and attach related if select_related_generic
+        # _model_generic_fields implies select_related_generic was called
         if self._model_generic_fields and self._result_cache is None:
-            iter(self)
-            return item in self._result_cache
-        else:
-            return super(GenericQuerySet, self).__contains__(item)
+            # fully populate the cache
+            self._result_cache = []
+            self._iter = self.iterator()
+            while self._iter:
+                self._fill_cache()
+            
+            # attach generically related objects
+            ids_by_ct = {}
+            for item in self._result_cache:
+                # go through each field that is a GenericForeignKey
+                for field in self._model_generic_fields:
+                    # get the content type of the related object
+                    content_type = getattr(item, field.ct_field)
+                    ids_for_this_ct = ids_by_ct.setdefault(content_type, set())
+                    # add the related object's id to the set
+                    ids_for_this_ct.add(getattr(item, field.fk_field))
+            objects_by_ct = {}
+            for (ct, ids) in ids_by_ct.items():
+                # fetch all the objects of this type by id
+                objects_by_ct[ct] = ct.model_class().objects.in_bulk(ids)
+            for item in self._result_cache:
+                for field in self._model_generic_fields:
+                    content_type = getattr(item, field.ct_field)
+                    object_id = getattr(item, field.fk_field)
+                    related_object = objects_by_ct[content_type][object_id]
+                    # attach the related object to the GFK field
+                    setattr(item, field.cache_attr, related_object)        

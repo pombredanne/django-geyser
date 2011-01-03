@@ -75,7 +75,7 @@ class QuerySetTestCase(GeyserTestCase):
         self.assertEqual(len(connection.queries), query_count)
 
 
-class QuerySetTimeTestCase(GeyserTestCase):
+class LargeQuerySetTestCase(GeyserTestCase):
     fixtures = ['users.json', 'manyobjects.json']
     
     def setUp(self):
@@ -84,6 +84,14 @@ class QuerySetTimeTestCase(GeyserTestCase):
     
     def tearDown(self):
         settings.DEBUG = False
+
+    def test_select_all(self):
+        all = list(GenericQuerySet(Droplet).select_related_generic())
+        query_count = len(connection.queries)
+        
+        for droplet in all:
+            droplet.content_object
+        self.assertEqual(len(connection.queries), query_count)
      
     def test_execution_time(self):
         # this might be a bad test
@@ -109,4 +117,4 @@ class QuerySetTimeTestCase(GeyserTestCase):
         self.assertTrue(ratio <= TARGET_RATIO, '%s > %s' % (ratio, TARGET_RATIO))
 
 
-__all__ = ('QuerySetTestCase', 'QuerySetTimeTestCase',)
+__all__ = ('QuerySetTestCase', 'LargeQuerySetTestCase',)
