@@ -11,7 +11,7 @@ from geyser.tests.testapp.models import TestModel1, TestModel2, TestModel3
 from geyser.models import Droplet, Stream
 
 
-class ManagerGetListTest(GeyserTestCase):
+class DropletManagerGetListTest(GeyserTestCase):
     fixtures = ['users.json', 'objects.json', 'streams.json', 'droplets.json']
     
     def setUp(self):        
@@ -130,7 +130,7 @@ class ManagerGetListTest(GeyserTestCase):
         self.assertTrue(all(d.content_object.owner == user for d in user_pubs))
 
 
-class ManagerSelectRelatedTest(GeyserTestCase):
+class DropletManagerSelectRelatedTest(GeyserTestCase):
     fixtures = ['users.json', 'objects.json', 'streams.json', 'droplets.json']
     
     def setUp(self):
@@ -150,7 +150,7 @@ class ManagerSelectRelatedTest(GeyserTestCase):
         self.assertEqual(len(connection.queries), query_count)
 
 
-class ManagerPermissionsTest(GeyserTestCase):
+class DropletManagerPermissionsTest(GeyserTestCase):
     fixtures = ['users.json', 'objects.json', 'streams.json', 'permissions.json']
     
     def setUp(self):        
@@ -210,7 +210,7 @@ class ManagerPermissionsTest(GeyserTestCase):
         self.assertEqual(allowed, None)
 
 
-class ManagerPublishTest(GeyserTestCase):
+class DropletManagerPublishTest(GeyserTestCase):
     fixtures = ['users.json', 'objects.json', 'streams.json', 'permissions.json']
     
     def setUp(self):        
@@ -252,7 +252,7 @@ class ManagerPublishTest(GeyserTestCase):
         self.assertEqual(droplet.published, datetime(2010, 7, 1))
 
 
-class ManagerUniquenessTest(GeyserTestCase):
+class DropletManagerUniquenessTest(GeyserTestCase):
     def setUp(self):
         self.t2a = TestModel2.objects.create(name='an object')
         self.t2b = TestModel2.objects.create(name='an object')
@@ -272,7 +272,7 @@ class ManagerUniquenessTest(GeyserTestCase):
         Droplet.objects.publish(self.t2b)
 
 
-class ManagerUnpublishTest(GeyserTestCase):
+class DropletManagerUnpublishTest(GeyserTestCase):
     fixtures = ['users.json', 'objects.json', 'streams.json', 'droplets.json', 'permissions.json']
     
     def setUp(self):        
@@ -305,10 +305,10 @@ class ManagerUnpublishTest(GeyserTestCase):
 
 
 __all__ = (
-    'ManagerGetListTest',
-    'ManagerSelectRelatedTest',
-    'ManagerPermissionsTest',
-    'ManagerPublishTest',
-    'ManagerUniquenessTest',
-    'ManagerUnpublishTest',
+    'DropletManagerGetListTest',
+    'DropletManagerSelectRelatedTest',
+    'DropletManagerPermissionsTest',
+    'DropletManagerPublishTest',
+    'DropletManagerUniquenessTest',
+    'DropletManagerUnpublishTest',
 )

@@ -78,7 +78,7 @@ class DropletManager(Manager):
                 try:
                     objs = Model.objects.filter(**obj_filters)
                     # if no filters were given, this will simply return all
-                    # publishables of this type
+                    # objects of this type
                 except FieldError:
                     pass
                 else:
@@ -189,7 +189,7 @@ class DropletManager(Manager):
         Sets the is_current flag to False so that (by default) queries do not
         find these droplets anymore.
         
-        `publications` and `as_user` work exactly as they do for `publish()`,
+        `streams` and `as_user` work exactly as they do for `publish()`,
         restricting the list of objects which are affected.
         
         """

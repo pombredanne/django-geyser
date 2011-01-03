@@ -8,11 +8,11 @@ from geyser.models import Stream
 
 
 def _get_geyser_publish_permissions():
-    publishable_types = set()
-    for (publishable_type, options) in settings.GEYSER_PUBLISHABLES.items():
-        publishable_types.add(get_model(*publishable_type.split('.')))
+    types = set()
+    for app_model in settings.GEYSER_PUBLISHABLES:
+        types.add(get_model(*app_model.split('.')))
     return [
-        ('publish', 'Publish this', publishable_types),
+        ('publish', 'Publish this', types),
         ('publish_to', 'Publish to this', Stream),
     ]
 

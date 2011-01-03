@@ -7,7 +7,7 @@ from geyser.tests.testapp.models import TestModel1, TestModel2
 from geyser.models import Droplet, Stream
 
 
-class ModelTest(GeyserTestCase):
+class DropletTests(GeyserTestCase):
     fixtures = ['users.json', 'objects.json']
     
     def setUp(self):
@@ -59,4 +59,13 @@ class ModelTest(GeyserTestCase):
         self.assertEqual(droplet2.first.published_by, self.user)
 
 
-__all__ = ('ModelTest',)
+class StreamTests(GeyserTestCase):
+    fixtures = ['users.json', 'objects.json', 'streams.json', 'droplets.json']
+    
+    def test_droplet_list(self):
+        stream = Stream.objects.get(pk=1)
+        droplets = stream.droplets.get_list()
+        self.assertEqual(len(droplets), 3)
+
+
+__all__ = ('DropletTests', 'StreamTests')

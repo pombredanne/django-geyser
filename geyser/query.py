@@ -25,6 +25,7 @@ class GenericQuerySet(QuerySet):
     
     def _clone(self, *args, **kwargs):
         clone = super(GenericQuerySet, self)._clone(*args, **kwargs)
+        # copy the GenericQuerySet "private" attributes
         clone._model_generic_fields = self._model_generic_fields
         clone._select_related_fields = self._select_related_fields
         return clone
@@ -86,13 +87,17 @@ class GenericQuerySet(QuerySet):
             if attach_related:
                 ids_by_type = {}
                 for item in self._result_cache:
+                    # go through each field that is a GenericForeignKey
                     for field in self._model_generic_fields:
+                        # get the content type of the related object
                         content_type = getattr(item, field.ct_field)
                         ids_for_type = ids_by_type.setdefault(content_type, set())
+                        # add the related object's id to the set
                         ids_for_type.add(getattr(item, field.fk_field))
                 
                 objects_by_type = {}
                 for (type, ids) in ids_by_type.items():
+                    # fetch all the objects of this type by id
                     objects_by_type[type] = type.model_class().objects.in_bulk(ids)
                 
                 for item in self._result_cache:
@@ -100,6 +105,7 @@ class GenericQuerySet(QuerySet):
                         content_type = getattr(item, field.ct_field)
                         object_id = getattr(item, field.fk_field)
                         related_object = objects_by_type[content_type][object_id]
+                        # attach the related object to the GFK field
                         setattr(item, field.cache_attr, related_object)
             
             return iter(self._result_cache)

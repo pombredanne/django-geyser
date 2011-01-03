@@ -14,7 +14,9 @@ from geyser.managers import DropletManager
 
 class Stream(models.Model):
     """
-    Where Droplets are published. Intended to be subclassed.
+    Where Droplets are published.
+    
+    Intended to be subclassed, or used in ForeignKey.
     """
     pass
 
@@ -25,9 +27,9 @@ class Droplet(models.Model):
     
     Attributes:
     
-    * `publishable`: The object which is published.
-    * `publication`: The object which the publishable in published to.
-    * `first`: The `Droplet` corresponding to the first time the publishable
+    * `content_object`: The object which is published.
+    * `stream`: The stream which the object is published to.
+    * `first`: The `Droplet` corresponding to the first time the content_object
       was published. Can be self.
     * `is_current`: Whether this publishing is current (has not been
       unpublished).
