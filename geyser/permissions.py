@@ -7,29 +7,26 @@ from rubberstamp.models import AppPermission
 from geyser.models import Stream
 
 
-def _get_geyser_publish_permissions():
-    types = set()
-    for app_model in settings.GEYSER_PUBLISHABLES:
-        types.add(get_model(*app_model.split('.')))
-    return [
-        ('publish', 'Publish this', types),
-        ('publish_to', 'Publish to this', Stream),
-    ]
-
-permissions = _get_geyser_publish_permissions()
-
-
+publish_types = []
 for (app_model, pub_settings) in settings.GEYSER_PUBLISHABLES.items():
+    Model = get_model(*app_model.split('.'))
+    publish_types.append(Model)
     auto_perm_fields = pub_settings.get('auto_perms')
-    if auto_perm_fields:
-        def add_publish_permissions(sender, **kwargs):
-            if kwargs['created']:
-                instance = kwargs['instance']
-                for field_name in auto_perm_fields:
-                    user = getattr(instance, field_name, None)
-                    if user:
-                        AppPermission.objects.assign(
-                            'geyser.publish', user, obj=instance)
-        add_publish_permissions.__name__ = 'add_publish_permissions'
-        Publishable = get_model(*app_model.split('.'))
-        post_save.connect(add_publish_permissions, sender=Publishable)
+    if not auto_perm_fields:
+        continue
+    def add_publish_permissions(sender, **kwargs):
+        if not kwargs['created']:
+            return
+        instance = kwargs['instance']
+        for field_name in auto_perm_fields:
+            user = getattr(instance, field_name, None)
+            if not user:
+                continue
+            AppPermission.objects.assign('geyser.publish', user, obj=instance)
+    post_save.connect(add_publish_permissions, sender=Model)
+
+
+permissions = [
+    ('publish', 'Publish this', publish_types),
+    ('publish_to', 'Publish to this', Stream),
+]

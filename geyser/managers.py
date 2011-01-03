@@ -11,8 +11,8 @@ from geyser.query import GenericQuerySet
 
 class DropletManager(Manager):
     """
-    Custom manager for published objects, to support lookups by types and
-    instances of publishables and publications.
+    Custom manager for published objects, to support lookups by types, objects,
+    streams, and other filters.
     
     """
     
