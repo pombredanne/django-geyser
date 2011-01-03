@@ -1,3 +1,5 @@
+from django.db import connection, reset_queries
+
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 
@@ -62,10 +64,23 @@ class DropletTests(GeyserTestCase):
 class StreamTests(GeyserTestCase):
     fixtures = ['users.json', 'objects.json', 'streams.json', 'droplets.json']
     
+    def setUp(self):
+        self.stream = Stream.objects.get(pk=1)
+    
     def test_droplet_list(self):
-        stream = Stream.objects.get(pk=1)
-        droplets = stream.droplets.get_list()
+        droplets = self.stream.droplets.get_list()
         self.assertEqual(len(droplets), 3)
+    
+    def test_select_related(self):
+        reset_queries()
+        t1_pubs = list(self.stream.droplets.get_list(models=TestModel1))
+        assert(len(t1_pubs) == 2)
+        query_count = len(connection.queries)
+        for droplet in t1_pubs:
+            droplet.first
+            droplet.content_object
+            droplet.stream
+        self.assertEqual(len(connection.queries), query_count)
 
 
 __all__ = ('DropletTests', 'StreamTests')
