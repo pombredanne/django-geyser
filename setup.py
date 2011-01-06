@@ -2,9 +2,12 @@
 
 from distutils.core import setup
 
+import geyser
+
+
 setup(
     name='django-geyser',
-    version='0.2dev1',
+    version=geyser.__version__,
     description='A Django application which allows objects of any type to be published to a stream.',
     author='James Lecker Jr',
     author_email='james@jameslecker.com',
